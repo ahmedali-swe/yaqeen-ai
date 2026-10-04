@@ -1,0 +1,39 @@
+name: Foundation checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:0.8.6-pg17
+        env:
+          POSTGRES_USER: yaqeen
+          POSTGRES_PASSWORD: ci_ephemeral_only
+          POSTGRES_DB: yaqeen
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U yaqeen -d yaqeen"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://yaqeen:ci_ephemeral_only@localhost:5432/yaqeen
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm env:check
+      - run: pnpm db:migrate
+      - run: pnpm db:migrate
+      - run: pnpm db:check
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
