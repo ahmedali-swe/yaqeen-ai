@@ -1,0 +1,23 @@
+{
+  "dataset": "meeAtif/hadith_datasets",
+  "revision": "cd62605e4fef3c46968a5f9fdcccbbbffdf631b5",
+  "declaredLicense": "MIT",
+  "files": [
+    {
+      "collection": "bukhari",
+      "file": "bukhari.json",
+      "records": 7277,
+      "upstreamUrl": "https://huggingface.co/datasets/meeAtif/hadith_datasets/resolve/cd62605e4fef3c46968a5f9fdcccbbbffdf631b5/Sahih%20al-Bukhari.json",
+      "upstreamSha256": "8183491ca95f28072254f84687a81fded4c484d3c54c1d0aa7e42191601af05d",
+      "normalizedSha256": "e1ebeacae4a178ce1b04d0501079382a05153bb881affb17bb1ff505774d0d10"
+    },
+    {
+      "collection": "muslim",
+      "file": "muslim.json",
+      "records": 7368,
+      "upstreamUrl": "https://huggingface.co/datasets/meeAtif/hadith_datasets/resolve/cd62605e4fef3c46968a5f9fdcccbbbffdf631b5/Sahih%20Muslim.json",
+      "upstreamSha256": "1484b90749b56444095a6bcec2532f001ae1a09226913484580fecf7e6fa55b8",
+      "normalizedSha256": "a65d357ab820ce4cecb7e54a6dd30b36c15039e20edb8d8149ed2ed3df8a3c41"
+    }
+  ]
+}

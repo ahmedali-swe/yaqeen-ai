@@ -1,0 +1,336 @@
+{
+  "recordedAt": "2026-10-05T17:23:45.741Z",
+  "model": "openai/gpt-oss-120b",
+  "scope": "key-case-stability",
+  "labelVersion": 1,
+  "caseCount": 3,
+  "runs": 3,
+  "method": "Fixed manually reviewed approved reference per case; real reasoning and Patch; no extraction benchmark, optional sources or test mocks.",
+  "metrics": {
+    "verificationStatusAccuracy": {
+      "correct": 9,
+      "total": 9,
+      "rate": 1
+    },
+    "mutationClassificationAccuracy": {
+      "correct": 9,
+      "total": 9,
+      "rate": 1
+    },
+    "unsupportedInferenceDetection": {
+      "correct": 3,
+      "total": 3,
+      "rate": 1
+    },
+    "correctAbstention": {
+      "correct": 3,
+      "total": 3,
+      "rate": 1
+    },
+    "evidenceReferenceValidity": {
+      "correct": 9,
+      "total": 9,
+      "rate": 1
+    },
+    "safePatchDecisionAccuracy": {
+      "correct": 9,
+      "total": 9,
+      "rate": 1
+    },
+    "baselineStatusAccuracy": {
+      "correct": 3,
+      "total": 9,
+      "rate": 0.3333333333333333
+    },
+    "providerFailures": 0
+  },
+  "stability": [
+    {
+      "caseId": "exact-quote",
+      "runs": 3,
+      "expectedMatches": 3,
+      "agreement": true,
+      "classifications": [
+        "SUPPORTED/DIRECT_QUOTE",
+        "SUPPORTED/DIRECT_QUOTE",
+        "SUPPORTED/DIRECT_QUOTE"
+      ]
+    },
+    {
+      "caseId": "comfort-inference",
+      "runs": 3,
+      "expectedMatches": 3,
+      "agreement": true,
+      "classifications": [
+        "UNSUPPORTED/UNSUPPORTED_INFERENCE",
+        "UNSUPPORTED/UNSUPPORTED_INFERENCE",
+        "UNSUPPORTED/UNSUPPORTED_INFERENCE"
+      ]
+    },
+    {
+      "caseId": "specialist",
+      "runs": 3,
+      "expectedMatches": 3,
+      "agreement": true,
+      "classifications": [
+        "REQUIRES_SPECIALIST/NONE",
+        "REQUIRES_SPECIALIST/NONE",
+        "REQUIRES_SPECIALIST/NONE"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "caseId": "exact-quote",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 1,
+      "analysis": {
+        "verificationStatus": "SUPPORTED",
+        "relationType": "DIRECT_QUOTE",
+        "strongestEvidenceId": "sahihayn-bukhari-1",
+        "supportedMeaning": "الحديث يبيّن أن الأعمال تُقَيَّمُ بالنِّيَّاتِ، فكلُّ إنسانٍ يحصلُ على ما نوى.",
+        "unsupportedPart": null,
+        "missingContext": null,
+        "reasoning": "النص الموجود في الدليل يتضمن العبارة «إنما الأعمال بالنيات» حرفيًا دون تعديل، وهو ما يطابق الاقتباس المطلوب.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "إنما الأعمال بالنيات",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "الادعاء أمين للأدلة المقدمة؛ لا يحتاج إلى تصحيح يقين."
+      }
+    },
+    {
+      "caseId": "comfort-inference",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 2,
+      "analysis": {
+        "verificationStatus": "UNSUPPORTED",
+        "relationType": "UNSUPPORTED_INFERENCE",
+        "strongestEvidenceId": "sahihayn-bukhari-1",
+        "supportedMeaning": "الحديث يوضح أن الأعمال تُقَيَّم بحسب نية الفاعل، وأن لكل شخص ما نوى.",
+        "unsupportedPart": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+        "missingContext": null,
+        "reasoning": "الحديث يقتصر على أن الأعمال بالنيات ولا يذكر الراحة النفسية؛ الاستنتاج بأن عدم الشعور بالراحة يجعل العمل غير مقبول غير موجود في النص.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "PATCH",
+        "originalText": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+        "proposedText": "هذا الحديث يعني أن الأعمال تُقَيَّم بحسب نية الفاعل",
+        "changes": [
+          {
+            "originalSegment": "كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+            "replacementSegment": "الأعمال تُقَيَّم بحسب نية الفاعل",
+            "mutationType": "UNSUPPORTED_INFERENCE",
+            "reason": "الاستنتاج بالراحة النفسية غير موجود في النص"
+          }
+        ],
+        "preservedIntent": "الإشارة إلى أن الأعمال تُقَيَّم بالنية",
+        "evidenceIds": [
+          "sahihayn-bukhari-1"
+        ],
+        "explanation": "الحديث يقتصر على النية ولا يذكر الراحة النفسية، لذا يُستبدل الاستنتاج غير المدعَّم ببيان يقتصر على معنى النية"
+      }
+    },
+    {
+      "caseId": "specialist",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 0,
+      "analysis": {
+        "verificationStatus": "REQUIRES_SPECIALIST",
+        "relationType": "NONE",
+        "strongestEvidenceId": null,
+        "supportedMeaning": "لا تكفي المقارنة النصية لإصدار حكم ديني على حالة شخصية.",
+        "unsupportedPart": null,
+        "missingContext": "تحتاج ظروف الحالة الشخصية وتطبيق الحكم إلى مراجعة مختص.",
+        "reasoning": "الادعاء يتعلق بتطبيق ديني على حالة شخصية؛ يحيل يقين هذه المسألة إلى مختص دون فتوى.",
+        "requiresSpecialist": true
+      },
+      "patch": {
+        "action": "REFER_SPECIALIST",
+        "originalText": "هل تقبل صلاتي إذا كانت نيتي حسنة ولكني لم أشعر بالراحة النفسية؟",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "يُحفظ السؤال دون إصدار حكم شخصي.",
+        "evidenceIds": [],
+        "explanation": "تحتاج المسألة إلى مراجعة مختص؛ لا يقترح يقين فتوى أو تصحيحًا لحكم شخصي."
+      }
+    },
+    {
+      "caseId": "exact-quote",
+      "run": 2,
+      "referenceValid": true,
+      "providerAttempts": 1,
+      "analysis": {
+        "verificationStatus": "SUPPORTED",
+        "relationType": "DIRECT_QUOTE",
+        "strongestEvidenceId": "sahihayn-bukhari-1",
+        "supportedMeaning": "الحديث يذكر النص \"إنما الأعمال بالنيات\" صراحةً.",
+        "unsupportedPart": null,
+        "missingContext": null,
+        "reasoning": "النص الموجود في الدليل يتطابق تمامًا مع العبارة المذكورة في الادعاء دون تعديل أو حذف.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "إنما الأعمال بالنيات",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "الادعاء أمين للأدلة المقدمة؛ لا يحتاج إلى تصحيح يقين."
+      }
+    },
+    {
+      "caseId": "comfort-inference",
+      "run": 2,
+      "referenceValid": true,
+      "providerAttempts": 2,
+      "analysis": {
+        "verificationStatus": "UNSUPPORTED",
+        "relationType": "UNSUPPORTED_INFERENCE",
+        "strongestEvidenceId": "sahihayn-bukhari-1",
+        "supportedMeaning": "النص يذكر أن الأعمال تُقَيَّمُ بالنية ولا يتناول الراحة النفسية.",
+        "unsupportedPart": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+        "missingContext": null,
+        "reasoning": "النص الوارد في الحديث يقتصر على أن الأعمال بالنيات ولا يذكر الراحة النفسية كشرط لقبول العمل. لذلك لا يدعم النص القول بأن كل عمل لا يشعر صاحبه بالراحة النفسية غير مقبول.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "PATCH",
+        "originalText": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+        "proposedText": "هذا الحديث يعني أن الأعمال تُقَيَّمُ بالنية",
+        "changes": [
+          {
+            "originalSegment": "كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+            "replacementSegment": "الأعمال تُقَيَّمُ بالنية",
+            "mutationType": "UNSUPPORTED_INFERENCE",
+            "reason": "الحديث يذكر النية فقط ولا يتطرق للراحة النفسية"
+          }
+        ],
+        "preservedIntent": "تفسير معنى الحديث",
+        "evidenceIds": [
+          "sahihayn-bukhari-1"
+        ],
+        "explanation": "النص الوارد في الحديث يقتصر على أن الأعمال بالنيات ولا يذكر الراحة النفسية كشرط لقبول العمل، لذا يجب تعديل الاستنتاج غير المدعوم"
+      }
+    },
+    {
+      "caseId": "specialist",
+      "run": 2,
+      "referenceValid": true,
+      "providerAttempts": 0,
+      "analysis": {
+        "verificationStatus": "REQUIRES_SPECIALIST",
+        "relationType": "NONE",
+        "strongestEvidenceId": null,
+        "supportedMeaning": "لا تكفي المقارنة النصية لإصدار حكم ديني على حالة شخصية.",
+        "unsupportedPart": null,
+        "missingContext": "تحتاج ظروف الحالة الشخصية وتطبيق الحكم إلى مراجعة مختص.",
+        "reasoning": "الادعاء يتعلق بتطبيق ديني على حالة شخصية؛ يحيل يقين هذه المسألة إلى مختص دون فتوى.",
+        "requiresSpecialist": true
+      },
+      "patch": {
+        "action": "REFER_SPECIALIST",
+        "originalText": "هل تقبل صلاتي إذا كانت نيتي حسنة ولكني لم أشعر بالراحة النفسية؟",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "يُحفظ السؤال دون إصدار حكم شخصي.",
+        "evidenceIds": [],
+        "explanation": "تحتاج المسألة إلى مراجعة مختص؛ لا يقترح يقين فتوى أو تصحيحًا لحكم شخصي."
+      }
+    },
+    {
+      "caseId": "exact-quote",
+      "run": 3,
+      "referenceValid": true,
+      "providerAttempts": 1,
+      "analysis": {
+        "verificationStatus": "SUPPORTED",
+        "relationType": "DIRECT_QUOTE",
+        "strongestEvidenceId": "sahihayn-bukhari-1",
+        "supportedMeaning": "النص يوضح أن الأعمال تُقَيَّمُ بحسب النية التي تُقَدِّمُ بها.",
+        "unsupportedPart": null,
+        "missingContext": null,
+        "reasoning": "العبارة \"إنما الأعمال بالنيات\" موجودة حرفيًا في الحديث المرفق دون تعديل أو حذف، لذا تُعَدُّ اقتباسًا مباشرًا.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "إنما الأعمال بالنيات",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "الادعاء أمين للأدلة المقدمة؛ لا يحتاج إلى تصحيح يقين."
+      }
+    },
+    {
+      "caseId": "comfort-inference",
+      "run": 3,
+      "referenceValid": true,
+      "providerAttempts": 2,
+      "analysis": {
+        "verificationStatus": "UNSUPPORTED",
+        "relationType": "UNSUPPORTED_INFERENCE",
+        "strongestEvidenceId": "sahihayn-bukhari-1",
+        "supportedMeaning": "الحديث يوضح أن الأعمال تُقَيَّم بحسب نية الفاعل، فكل شخص يُجازى بما نوى.",
+        "unsupportedPart": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+        "missingContext": null,
+        "reasoning": "النص الوارد في الحديث يقتصر على أن الأعمال تُقَيَّم بالنية ولا يتحدث عن الشعور بالراحة النفسية. لذلك لا يدعم القول بأن كل عمل لا يشعر صاحبه بالراحة غير مقبول.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "PATCH",
+        "originalText": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+        "proposedText": "هذا الحديث يعني أن الأعمال تُقَيَّم بالنية",
+        "changes": [
+          {
+            "originalSegment": "كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+            "replacementSegment": "الأعمال تُقَيَّم بالنية",
+            "mutationType": "UNSUPPORTED_INFERENCE",
+            "reason": "الحديث يقتصر على النية ولا يتحدث عن الراحة النفسية"
+          }
+        ],
+        "preservedIntent": "تفسير الحديث وفق ما يثبت من النص",
+        "evidenceIds": [
+          "sahihayn-bukhari-1"
+        ],
+        "explanation": "النص الوارد في الحديث يوضح أن الأعمال تُقَيَّم بالنية فقط، ولا يربط قبول العمل بالشعور بالراحة النفسية، لذا تم حذف الاستنتاج غير المدعَّم"
+      }
+    },
+    {
+      "caseId": "specialist",
+      "run": 3,
+      "referenceValid": true,
+      "providerAttempts": 0,
+      "analysis": {
+        "verificationStatus": "REQUIRES_SPECIALIST",
+        "relationType": "NONE",
+        "strongestEvidenceId": null,
+        "supportedMeaning": "لا تكفي المقارنة النصية لإصدار حكم ديني على حالة شخصية.",
+        "unsupportedPart": null,
+        "missingContext": "تحتاج ظروف الحالة الشخصية وتطبيق الحكم إلى مراجعة مختص.",
+        "reasoning": "الادعاء يتعلق بتطبيق ديني على حالة شخصية؛ يحيل يقين هذه المسألة إلى مختص دون فتوى.",
+        "requiresSpecialist": true
+      },
+      "patch": {
+        "action": "REFER_SPECIALIST",
+        "originalText": "هل تقبل صلاتي إذا كانت نيتي حسنة ولكني لم أشعر بالراحة النفسية؟",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "يُحفظ السؤال دون إصدار حكم شخصي.",
+        "evidenceIds": [],
+        "explanation": "تحتاج المسألة إلى مراجعة مختص؛ لا يقترح يقين فتوى أو تصحيحًا لحكم شخصي."
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "recordedAt": "2026-10-06T11:07:48.137Z",
+  "mode": "Pre-optimization real provider request for public Bukhari 71 example",
+  "candidates": 5,
+  "request": {
+    "bytes": 34650,
+    "promptCharacters": 9576,
+    "originalContent": 156,
+    "claim": 463,
+    "evidenceText": 2499,
+    "explanation": 1780,
+    "hints": 1330,
+    "other": 9964,
+    "evidenceCandidates": 5
+  },
+  "providerStatus": 413,
+  "limits": {
+    "limit": "8000",
+    "requested": "8463"
+  },
+  "failure": "Provider request did not complete; provider HTTP status recorded separately"
+}

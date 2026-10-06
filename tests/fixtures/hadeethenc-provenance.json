@@ -1,0 +1,49 @@
+{
+  "capturedAt": "2026-10-06",
+  "source": "Official Arabic HadeethEnc API; unmodified HTTP response bodies",
+  "documentation": "https://documenter.getpostman.com/view/5211979/TVev3j7q",
+  "entries": [
+    {
+      "path": "tests/fixtures/hadeethenc-intentions.json",
+      "sha256": "36913c594ec427917f3abbfaedb2d705bfe8d0b556ad987e3ca78e86a4078a51",
+      "bytes": 8868,
+      "url": "https://hadeethenc.com/api/v1/hadeeths/one/?language=ar&id=4560"
+    },
+    {
+      "path": "tests/fixtures/hadeethenc-understanding.json",
+      "sha256": "880b3820a987f66756902599cfb995beb0530809d0e3ea2c2212e6fbc55a3d03",
+      "bytes": 6830,
+      "url": "https://hadeethenc.com/api/v1/hadeeths/one/?language=ar&id=5518"
+    },
+    {
+      "path": "tests/fixtures/hadeethenc-purity.json",
+      "sha256": "d8d3a42085b954e9b0784abaa15a0aa8843bf0879a9b691601871ad5125ad6ec",
+      "bytes": 12246,
+      "url": "https://hadeethenc.com/api/v1/hadeeths/one/?language=ar&id=65004"
+    },
+    {
+      "path": "tests/fixtures/hadeethenc-intentions-narration.json",
+      "sha256": "9edcb9881e76a4bb3ba3e7b59f2f74e64cf87b1caa1e29f0e05cea4845049737",
+      "bytes": 10490,
+      "url": "https://hadeethenc.com/api/v1/hadeeths/one/?language=ar&id=66511"
+    },
+    {
+      "path": "tests/fixtures/hadeethenc-search-intentions.json",
+      "sha256": "0e407cc50a2ae3327f523c9e177b9be8ea5bc64dbe3287004dd9e71d46fd4555",
+      "bytes": 29581,
+      "url": "https://hadeethenc.com/api/v1/hadeeths/search/?language=ar&phrase=%D8%A5%D9%86%D9%85%D8%A7%20%D8%A7%D9%84%D8%A3%D8%B9%D9%85%D8%A7%D9%84%20%D8%A8%D8%A7%D9%84%D9%86%D9%8A%D8%A7%D8%AA"
+    },
+    {
+      "path": "tests/fixtures/hadeethenc-search-understanding.json",
+      "sha256": "b2b57f70885c4b62bfc1da8a97d5d17df0c95cd6d29ff27fed6ea693970c282e",
+      "bytes": 103531,
+      "url": "https://hadeethenc.com/api/v1/hadeeths/search/?language=ar&phrase=%D9%85%D9%86%20%D9%8A%D8%B1%D8%AF%20%D8%A7%D9%84%D9%84%D9%87%20%D8%A8%D9%87%20%D8%AE%D9%8A%D8%B1%D8%A7%20%D9%8A%D9%81%D9%82%D9%87%D9%87%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AF%D9%8A%D9%86"
+    },
+    {
+      "path": "tests/fixtures/hadeethenc-search-purity.json",
+      "sha256": "d18019c610f82b818d5d0be5a95b3323c7ab002e30626e52a177153b08bb5ad3",
+      "bytes": 11165,
+      "url": "https://hadeethenc.com/api/v1/hadeeths/search/?language=ar&phrase=%D8%A7%D9%84%D8%B7%D9%87%D9%88%D8%B1%20%D8%B4%D8%B7%D8%B1%20%D8%A7%D9%84%D8%A5%D9%8A%D9%85%D8%A7%D9%86"
+    }
+  ]
+}

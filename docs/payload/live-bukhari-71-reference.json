@@ -1,0 +1,223 @@
+{
+  "recordedAt": "2026-10-06T11:31:37.687Z",
+  "mode": "Actual HTTP reference regression: Bukhari 71 selected from real retrieved candidates; normal ranking run recorded separately",
+  "requests": [
+    {
+      "stage": "claims",
+      "status": 200
+    },
+    {
+      "stage": "evidence",
+      "status": 200
+    },
+    {
+      "stage": "relation",
+      "status": 200
+    },
+    {
+      "stage": "evidence",
+      "status": 200
+    },
+    {
+      "stage": "relation",
+      "status": 200
+    },
+    {
+      "stage": "patch",
+      "status": 502,
+      "errorCode": "INVALID_AI_RESPONSE"
+    }
+  ],
+  "previousAttempts": [
+    {
+      "recordedAt": "2026-10-06T11:29:08.160Z",
+      "requests": [
+        {
+          "stage": "claims",
+          "status": 200
+        },
+        {
+          "stage": "evidence",
+          "status": 200
+        },
+        {
+          "stage": "relation",
+          "status": 200
+        },
+        {
+          "stage": "evidence",
+          "status": 200
+        },
+        {
+          "stage": "relation",
+          "status": 200
+        },
+        {
+          "stage": "patch",
+          "status": 502
+        }
+      ],
+      "blocker": "HTTP_patch_502"
+    },
+    {
+      "recordedAt": "2026-10-06T11:30:16.495Z",
+      "requests": [
+        {
+          "stage": "claims",
+          "status": 200
+        },
+        {
+          "stage": "evidence",
+          "status": 200
+        },
+        {
+          "stage": "relation",
+          "status": 200
+        },
+        {
+          "stage": "evidence",
+          "status": 200
+        },
+        {
+          "stage": "relation",
+          "status": 200
+        },
+        {
+          "stage": "patch",
+          "status": 502,
+          "errorCode": "INVALID_AI_RESPONSE"
+        }
+      ],
+      "blocker": "HTTP_patch_502"
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-1",
+      "text": "من يرد الله به خيرًا يفقهه في الدين",
+      "normalizedText": "من يرد الله به خيرًا يفقهه في الدين",
+      "claimType": "QUOTE",
+      "subject": "من يرد الله به خيرًا",
+      "attributedTo": "الكاتب",
+      "sourceMentioned": null,
+      "isVerifiable": true,
+      "verificationReason": "Can be verified by checking the original text for the quoted phrase attributed to the writer.",
+      "originalStart": 13,
+      "originalEnd": 48
+    },
+    {
+      "id": "claim-2",
+      "text": "كل من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع فهذا دليل على أن الله لا يريد به خيرًا",
+      "normalizedText": "كل من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع فهذا دليل على أن الله لا يريد به خيرًا",
+      "claimType": "INTERPRETATION",
+      "subject": "من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع",
+      "attributedTo": "الكاتب",
+      "sourceMentioned": null,
+      "isVerifiable": true,
+      "verificationReason": "Can be verified by examining the author's argument in the text.",
+      "originalStart": 64,
+      "originalEnd": 155
+    }
+  ],
+  "quote": {
+    "resolution": {
+      "evidenceOrigin": "DIRECT",
+      "evidenceAnchorClaimId": null
+    },
+    "approvedSourceIds": [
+      {
+        "evidenceId": "sahihayn-bukhari-71",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-bukhari-3116",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-bukhari-7312",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-muslim-1037a",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-muslim-1037b",
+        "sourceId": "5518"
+      }
+    ],
+    "candidatesStored": 5,
+    "request": {
+      "operation": "claim_evidence_relation",
+      "bytes": 7945,
+      "originalContent": 156,
+      "claim": 124,
+      "evidenceText": 472,
+      "approvedExplanation": 356,
+      "hints": 0,
+      "other": 752,
+      "evidenceCandidates": 1
+    },
+    "analysis": {
+      "verificationStatus": "SUPPORTED",
+      "relationType": "DIRECT_QUOTE",
+      "strongestEvidenceId": "sahihayn-bukhari-71",
+      "supportedMeaning": "من يرد الله به خيرًا يفقهه في الدين",
+      "unsupportedPart": null,
+      "missingContext": null,
+      "reasoning": "النص الوارد في الحديث (صحيح البخاري 71) يحتوي على العبارة «مَن يُرِدِ اللَّهُ بِهِ خَيْرًا يُفَقِّهْهُ فِي الدِّينِ» مطابقة تمامًا للادعاء، ولا يُظهر حذفًا لشرط أو توضيحٍ يغيّر المعنى.",
+      "requiresSpecialist": false
+    }
+  },
+  "inference": {
+    "resolution": {
+      "evidenceOrigin": "CONTEXTUAL_ANCHOR",
+      "evidenceAnchorClaimId": "claim-1"
+    },
+    "approvedSourceIds": [
+      {
+        "evidenceId": "sahihayn-bukhari-71",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-bukhari-3116",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-bukhari-7312",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-muslim-1037a",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-muslim-1037b",
+        "sourceId": "5518"
+      }
+    ],
+    "candidatesStored": 5,
+    "request": {
+      "operation": "claim_evidence_relation",
+      "bytes": 8182,
+      "originalContent": 156,
+      "claim": 193,
+      "evidenceText": 472,
+      "approvedExplanation": 356,
+      "hints": 0,
+      "other": 857,
+      "evidenceCandidates": 1
+    },
+    "analysis": {
+      "verificationStatus": "UNSUPPORTED",
+      "relationType": "UNSUPPORTED_INFERENCE",
+      "strongestEvidenceId": "sahihayn-bukhari-71",
+      "supportedMeaning": "لا شيء",
+      "unsupportedPart": "كل من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع فهذا دليل على أن الله لا يريد به خيرًا",
+      "missingContext": null,
+      "reasoning": "الحديث يذكر أن من يريد الله به خيرًا يفقهه في الدين، ولا يثبت أن عدم الفقه يعني أن الله لا يريد له خيرًا؛ الاستنتاج عكسي غير مبرر من النص",
+      "requiresSpecialist": false
+    }
+  },
+  "blocker": "HTTP_patch_502"
+}

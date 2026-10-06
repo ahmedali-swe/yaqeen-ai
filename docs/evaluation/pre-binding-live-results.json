@@ -1,0 +1,327 @@
+{
+  "recordedAt": "2026-10-05T17:13:40.442Z",
+  "model": "openai/gpt-oss-120b",
+  "scope": "full-labeled-suite",
+  "labelVersion": 1,
+  "caseCount": 10,
+  "runs": 1,
+  "method": "Fixed manually reviewed approved reference per case; real reasoning and Patch; no extraction benchmark, optional sources or test mocks.",
+  "metrics": {
+    "verificationStatusAccuracy": {
+      "correct": 9,
+      "total": 10,
+      "rate": 0.9
+    },
+    "mutationClassificationAccuracy": {
+      "correct": 9,
+      "total": 10,
+      "rate": 0.9
+    },
+    "unsupportedInferenceDetection": {
+      "correct": 1,
+      "total": 1,
+      "rate": 1
+    },
+    "correctAbstention": {
+      "correct": 2,
+      "total": 2,
+      "rate": 1
+    },
+    "evidenceReferenceValidity": {
+      "correct": 9,
+      "total": 10,
+      "rate": 0.9
+    },
+    "safePatchDecisionAccuracy": {
+      "correct": 9,
+      "total": 10,
+      "rate": 0.9
+    },
+    "baselineStatusAccuracy": {
+      "correct": 5,
+      "total": 10,
+      "rate": 0.5
+    },
+    "providerFailures": 0
+  },
+  "stability": null,
+  "observations": [
+    {
+      "caseId": "exact-quote",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 1,
+      "analysis": {
+        "verificationStatus": "SUPPORTED",
+        "relationType": "DIRECT_QUOTE",
+        "strongestEvidenceId": "sahihayn-bukhari-1",
+        "supportedMeaning": "النص في الحديث يذكر العبارة «إنما الأعمال بالنيات» كما هو في الادعاء.",
+        "unsupportedPart": null,
+        "missingContext": null,
+        "reasoning": "الحديث المرفق يحتوي على العبارة المطابقة تمامًا للادعاء دون تعديل أو حذف، لذا يُعد اقتباسًا مباشرًا.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "إنما الأعمال بالنيات",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "الادعاء أمين للأدلة المقدمة؛ لا يحتاج إلى تصحيح يقين."
+      }
+    },
+    {
+      "caseId": "faithful-paraphrase",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 1,
+      "analysis": {
+        "verificationStatus": "SUPPORTED",
+        "relationType": "PARAPHRASE",
+        "strongestEvidenceId": "sahihayn-bukhari-1",
+        "supportedMeaning": "الأعمال تُقَصَدُ بالنية، وكل إنسان يُجازى بما نوى.",
+        "unsupportedPart": null,
+        "missingContext": null,
+        "reasoning": "النص الوارد في الحديث يذكر أن الأعمال بالنيات وأن لكل امرئ ما نوى، وهو ما يعبر عنه النص في الادعاء بصياغة مختلفة، لذا الادعاء مدعوم بالكامل.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "الأعمال مرتبطة بالنيات، ولكل إنسان ما نواه.",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "الادعاء أمين للأدلة المقدمة؛ لا يحتاج إلى تصحيح يقين."
+      }
+    },
+    {
+      "caseId": "comfort-inference",
+      "run": 1,
+      "referenceValid": false,
+      "providerAttempts": 2,
+      "analysis": {
+        "verificationStatus": "UNSUPPORTED",
+        "relationType": "UNSUPPORTED_INFERENCE",
+        "strongestEvidenceId": null,
+        "supportedMeaning": "الحديث يوضح أن الأعمال تُقَيَّمُ بحسب النية ولا يتحدث عن الراحة النفسية للفاعل.",
+        "unsupportedPart": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+        "missingContext": null,
+        "reasoning": "النص يذكر أن الأعمال بالنيات فقط، ولا يذكر أي شرط يتعلق بالراحة النفسية، لذا الاستنتاج غير مستند إلى النص.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "لا تتوفر أدلة كافية ضمن المصادر المتاحة لاقتراح تصحيح آمن."
+      }
+    },
+    {
+      "caseId": "overgeneralization",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 2,
+      "analysis": {
+        "verificationStatus": "UNSUPPORTED",
+        "relationType": "OVERGENERALIZATION",
+        "strongestEvidenceId": "sahihayn-muslim-223",
+        "supportedMeaning": "الْقُرْآنُ حُجَّةٌ لَكَ أَوْ عَلَيْكَ، أي يمكن أن يكون دليلًا لصالح الشخص أو ضدّه.",
+        "unsupportedPart": "القرآن حجة لصالح كل إنسان، ولا يكون حجة عليه في أي حال.",
+        "missingContext": null,
+        "reasoning": "النص يذكر أن القرآن حجة لك أو عليك، ولا يصرح بأنه حجة لصالح كل إنسان ولا يستبعد كونه حجة عليه، لذا الادعاء يوسّع المعنى بصورة غير مدعومة.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "PATCH",
+        "originalText": "القرآن حجة لصالح كل إنسان، ولا يكون حجة عليه في أي حال.",
+        "proposedText": "القرآن حجة لك أو عليك.",
+        "changes": [
+          {
+            "originalSegment": "لصالح كل إنسان، ولا يكون حجة عليه في أي حال",
+            "replacementSegment": "لك أو عليك",
+            "mutationType": "OVERGENERALIZATION",
+            "reason": "الإدعاء يوسّع المعنى غير مدعوم بالنص"
+          }
+        ],
+        "preservedIntent": "الإشارة إلى أن القرآن يمكن أن يكون دليلًا للإنسان أو ضده",
+        "evidenceIds": [
+          "sahihayn-muslim-223"
+        ],
+        "explanation": "النص يوضح أن القرآن حجة لك أو عليك، ولا يصرح بأنه حجة لصالح كل إنسان ولا يستبعد كونه حجة عليه، لذا تم تعديل العبارة لتطابق المعنى المدعوم"
+      }
+    },
+    {
+      "caseId": "missing-context",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 2,
+      "analysis": {
+        "verificationStatus": "PARTIALLY_SUPPORTED",
+        "relationType": "OVERGENERALIZATION",
+        "strongestEvidenceId": "sahihayn-muslim-223",
+        "supportedMeaning": "الحديث يذكر أن القرآن حجة لك أو عليك، أي أنه قد يكون دليلًا لصالحك أو ضدك.",
+        "unsupportedPart": "القرآن حجة لك",
+        "missingContext": "العبارة الأصلية تتضمن «أَوْ عَلَيْكَ» كخيار إضافي غير مذكور في الادعاء.",
+        "reasoning": "النص في الحديث يضيف خيارًا آخر («أَوْ عَلَيْكَ») غير موجود في الادعاء، لذا الادعاء يوسع المعنى الأصلي.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "PATCH",
+        "originalText": "القرآن حجة لك",
+        "proposedText": "القرآن حجة لك أو عليك",
+        "changes": [
+          {
+            "originalSegment": "لك",
+            "replacementSegment": "لك أو عليك",
+            "mutationType": "OVERGENERALIZATION",
+            "reason": "العبارة الأصلية في الحديث تشمل «أَوْ عَلَيْكَ» لذا الادعاء يفتقر إلى هذا الجزء."
+          }
+        ],
+        "preservedIntent": "نقل فكرة أن القرآن دليل للإنسان",
+        "evidenceIds": [
+          "sahihayn-muslim-223"
+        ],
+        "explanation": "الحديث يضيف خيار «أَوْ عَلَيْكَ» غير مذكور في الادعاء، لذا تم تعديل العبارة لتشمل السياق الكامل"
+      }
+    },
+    {
+      "caseId": "incorrect-attribution",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 2,
+      "analysis": {
+        "verificationStatus": "UNSUPPORTED",
+        "relationType": "MISATTRIBUTION",
+        "strongestEvidenceId": "sahihayn-bukhari-1",
+        "supportedMeaning": "النص «إنما الأعمال بالنيات» مذكور في حديث نبوي وليس في القرآن.",
+        "unsupportedPart": "آية من القرآن",
+        "missingContext": null,
+        "reasoning": "الدليل يثبت أن العبارة جاءت في حديث صحيح البخاري، ولا يوجد دليل في النص المقدَّم يثبت أنها آية قرآنية، لذا الادعاء بكونها آية من القرآن غير صحيح.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "PATCH",
+        "originalText": "هذه آية من القرآن: «إنما الأعمال بالنيات»",
+        "proposedText": "هذه حديث نبوي: «إنما الأعمال بالنيات»",
+        "changes": [
+          {
+            "originalSegment": "آية من القرآن",
+            "replacementSegment": "حديث نبوي",
+            "mutationType": "MISATTRIBUTION",
+            "reason": "تصحيح نسب العبارة للقرآن"
+          }
+        ],
+        "preservedIntent": "الإشارة إلى النص «إنما الأعمال بالنيات» مع تصحيح مصدره",
+        "evidenceIds": [
+          "sahihayn-bukhari-1"
+        ],
+        "explanation": "الحديث المرفق يثبت أن العبارة «إنما الأعمال بالنيات» وردت في السنة النبوية ولا توجد آية قرآنية مماثلة، لذا يُستبدل الوصف الخاطئ للعبارة بحديث نبوي"
+      }
+    },
+    {
+      "caseId": "insufficient-evidence",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 0,
+      "analysis": {
+        "verificationStatus": "NEEDS_CONTEXT",
+        "relationType": "NONE",
+        "strongestEvidenceId": null,
+        "supportedMeaning": "لم تُقدَّم أدلة يمكن تحديد معنى مدعوم منها.",
+        "unsupportedPart": null,
+        "missingContext": "يلزم دليل من مصدر معتمد قبل تقييم العلاقة بهذا الادعاء.",
+        "reasoning": "غياب الأدلة المقدمة يمنع تقييم أمانة النقل أو الاستدلال؛ لا يمثل ذلك حكمًا على صحة الادعاء.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "يذكر النص حكمًا لا يتوفر له دليل ضمن المصادر المقدمة.",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "لا تتوفر أدلة كافية ضمن المصادر المتاحة لاقتراح تصحيح آمن."
+      }
+    },
+    {
+      "caseId": "specialist",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 0,
+      "analysis": {
+        "verificationStatus": "REQUIRES_SPECIALIST",
+        "relationType": "NONE",
+        "strongestEvidenceId": null,
+        "supportedMeaning": "لا تكفي المقارنة النصية لإصدار حكم ديني على حالة شخصية.",
+        "unsupportedPart": null,
+        "missingContext": "تحتاج ظروف الحالة الشخصية وتطبيق الحكم إلى مراجعة مختص.",
+        "reasoning": "الادعاء يتعلق بتطبيق ديني على حالة شخصية؛ يحيل يقين هذه المسألة إلى مختص دون فتوى.",
+        "requiresSpecialist": true
+      },
+      "patch": {
+        "action": "REFER_SPECIALIST",
+        "originalText": "هل تقبل صلاتي إذا كانت نيتي حسنة ولكني لم أشعر بالراحة النفسية؟",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "يُحفظ السؤال دون إصدار حكم شخصي.",
+        "evidenceIds": [],
+        "explanation": "تحتاج المسألة إلى مراجعة مختص؛ لا يقترح يقين فتوى أو تصحيحًا لحكم شخصي."
+      }
+    },
+    {
+      "caseId": "muslim-quote",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 1,
+      "analysis": {
+        "verificationStatus": "SUPPORTED",
+        "relationType": "DIRECT_QUOTE",
+        "strongestEvidenceId": "sahihayn-muslim-223",
+        "supportedMeaning": "النص يذكر أن الطهور شطر الإيمان كما جاء في الحديث.",
+        "unsupportedPart": null,
+        "missingContext": null,
+        "reasoning": "العبارة الموجودة في النص مطابقة تماماً للادعاء ولا توجد إضافات أو حذف، لذا يعتبر اقتباساً مباشراً.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "الطهور شطر الإيمان",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "الادعاء أمين للأدلة المقدمة؛ لا يحتاج إلى تصحيح يقين."
+      }
+    },
+    {
+      "caseId": "bukhari-knowledge",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 1,
+      "analysis": {
+        "verificationStatus": "SUPPORTED",
+        "relationType": "DIRECT_QUOTE",
+        "strongestEvidenceId": "sahihayn-bukhari-71",
+        "supportedMeaning": "النص يذكر أن من يرد الله به خيرًا يُفَقِّهُ في الدين.",
+        "unsupportedPart": null,
+        "missingContext": null,
+        "reasoning": "العبارة الواردة في الادعاء مطابقة تمامًا للنص الموجود في الحديث المذكور، ولا توجد إضافات أو حذف مؤهلات.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "من يرد الله به خيرا يفقهه في الدين",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "الادعاء أمين للأدلة المقدمة؛ لا يحتاج إلى تصحيح يقين."
+      }
+    }
+  ]
+}

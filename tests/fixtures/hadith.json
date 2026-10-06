@@ -1,0 +1,71 @@
+[
+  {
+    "id": "dorar-67613",
+    "sourceType": "HADITH",
+    "title": "إنما الأعمال بالنيات",
+    "exactText": "إِنَّما الأعمالُ بالنياتِ وإِنَّما لِكلِّ امرئٍ ما نَوَى",
+    "reference": "غاية المرام، 401",
+    "canonicalUrl": "https://dorar.net/hadith/sharh/67613",
+    "sourceName": "الدرر السنية — الموسوعة الحديثية",
+    "relevanceScore": 0,
+    "metadata": {
+      "dataset": "curated-competition-v1",
+      "coverage": "development/demo only; not a complete hadith database",
+      "checkedAt": "2026-10-05",
+      "narrator": "عمر بن الخطاب",
+      "scholar": "الألباني",
+      "sourceBook": "غاية المرام",
+      "sourceNumber": "401",
+      "reportedGrade": "صحيح",
+      "gradeAttribution": "حكم المحدث كما تنقله الدرر السنية؛ ليس حكم يقين على الادعاء",
+      "textScope": "Exact short narration displayed at the top of the linked Dorar page; not the longer narration in its commentary.",
+      "language": "ar"
+    }
+  },
+  {
+    "id": "dorar-60879-muslim-55",
+    "sourceType": "HADITH",
+    "title": "الدين النصيحة",
+    "exactText": "الدِّينُ النَّصيحةُ. قُلنا: لمَن؟ قال: للَّهِ ولكِتابِه ولرَسولِه، ولأئِمَّةِ المُسلِمينَ وعامَّتِهم.",
+    "reference": "صحيح مسلم، 55",
+    "canonicalUrl": "https://dorar.net/hadith/sharh/60879",
+    "sourceName": "الدرر السنية — الموسوعة الحديثية",
+    "relevanceScore": 0,
+    "metadata": {
+      "dataset": "curated-competition-v1",
+      "coverage": "development/demo only; not a complete hadith database",
+      "checkedAt": "2026-10-05",
+      "narrator": "تميم الداري",
+      "scholar": "مسلم",
+      "sourceBook": "صحيح مسلم",
+      "sourceNumber": "55",
+      "reportedGrade": "[صحيح]",
+      "gradeAttribution": "حكم المحدث كما تنقله الدرر السنية؛ ليس حكم يقين على الادعاء",
+      "textScope": "Muslim narration in the linked page's second narration block, below the opening Albani entry.",
+      "language": "ar"
+    }
+  },
+  {
+    "id": "dorar-7317",
+    "sourceType": "HADITH",
+    "title": "يحب لأخيه ما يحب لنفسه",
+    "exactText": "لا يُؤمِنُ أحَدُكُم حتَّى يُحِبَّ لأخيه ما يُحِبُّ لنَفسِه.",
+    "reference": "صحيح البخاري، 13",
+    "canonicalUrl": "https://dorar.net/hadith/sharh/7317",
+    "sourceName": "الدرر السنية — الموسوعة الحديثية",
+    "relevanceScore": 0,
+    "metadata": {
+      "dataset": "curated-competition-v1",
+      "coverage": "development/demo only; not a complete hadith database",
+      "checkedAt": "2026-10-05",
+      "narrator": "أنس بن مالك",
+      "scholar": "البخاري",
+      "sourceBook": "صحيح البخاري",
+      "sourceNumber": "13",
+      "reportedGrade": "[صحيح]",
+      "gradeAttribution": "حكم المحدث كما تنقله الدرر السنية؛ ليس حكم يقين على الادعاء",
+      "textScope": "Exact narration displayed at the top of the linked Dorar page.",
+      "language": "ar"
+    }
+  }
+]

@@ -1,0 +1,251 @@
+{
+  "recordedAt": "2026-10-05T21:00:27.266Z",
+  "origin": "http://localhost:3100",
+  "live": true,
+  "requests": [
+    {
+      "path": "/api/analyze/claims",
+      "status": 200,
+      "body": {
+        "claims": [
+          {
+            "id": "claim-1",
+            "text": "«إنما الأعمال بالنيات»",
+            "normalizedText": "«إنما الأعمال بالنيات»",
+            "claimType": "QUOTE",
+            "subject": null,
+            "attributedTo": "الكاتب",
+            "sourceMentioned": null,
+            "isVerifiable": true,
+            "verificationReason": "Can be checked against hadith collections to confirm the phrase exists.",
+            "originalStart": 12,
+            "originalEnd": 34
+          },
+          {
+            "id": "claim-2",
+            "text": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+            "normalizedText": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+            "claimType": "INTERPRETATION",
+            "subject": "الحديث",
+            "attributedTo": "الكاتب",
+            "sourceMentioned": null,
+            "isVerifiable": true,
+            "verificationReason": "Can be verified by locating the writer's statement in the source text.",
+            "originalStart": 46,
+            "originalEnd": 118
+          }
+        ]
+      }
+    },
+    {
+      "path": "/api/analyze/evidence",
+      "status": 200,
+      "body": {
+        "evidence": [
+          {
+            "id": "sahihayn-bukhari-1",
+            "sourceType": "HADITH",
+            "title": "صحيح البخاري — 1",
+            "exactText": "حَدَّثَنَا الْحُمَيْدِيُّ عَبْدُ اللَّهِ بْنُ الزُّبَيْرِ ، قَالَ : حَدَّثَنَا سُفْيَانُ ، قَالَ : حَدَّثَنَا يَحْيَى بْنُ سَعِيدٍ الْأَنْصَارِيُّ ، قَالَ : أَخْبَرَنِي مُحَمَّدُ بْنُ إِبْرَاهِيمَ التَّيْمِيُّ ، أَنَّهُ سَمِعَ عَلْقَمَةَ بْنَ وَقَّاصٍ اللَّيْثِيَّ ، يَقُولُ : سَمِعْتُ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ، قَالَ : سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، يَقُولُ : \" إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ \"",
+            "reference": "صحيح البخاري، حديث 1",
+            "canonicalUrl": "https://sunnah.com/bukhari:1",
+            "sourceName": "صحيح البخاري",
+            "relevanceScore": 0.98,
+            "metadata": {
+              "chapterNumber": 1,
+              "inBookReference": "Book 1, Hadith 1",
+              "grading": null,
+              "collection": "bukhari",
+              "collectionArabic": "صحيح البخاري",
+              "hadithNumber": "1",
+              "chapter": "باب كَيْفَ كَانَ بَدْءُ الْوَحْىِ إِلَى رَسُولِ اللَّهِ صلى الله عليه وسلم",
+              "provider": "local-sahihayn",
+              "retrievalRole": "LOCAL_PRIMARY",
+              "dataset": "meeAtif/hadith_datasets",
+              "datasetRevision": "cd62605e4fef3c46968a5f9fdcccbbbffdf631b5",
+              "format": "plain-text",
+              "matchMethod": "phrase-containment"
+            }
+          }
+        ],
+        "retrieval": {
+          "hadithCorpus": "SAHIHAYN",
+          "hadith": "LOCAL_PRIMARY",
+          "dorar": "DISABLED",
+          "quranpedia": "NOT_REQUESTED"
+        },
+        "resolution": {
+          "evidenceOrigin": "DIRECT",
+          "evidenceAnchorClaimId": null
+        }
+      }
+    },
+    {
+      "path": "/api/analyze/relation",
+      "status": 200,
+      "body": {
+        "analysis": {
+          "verificationStatus": "SUPPORTED",
+          "relationType": "DIRECT_QUOTE",
+          "strongestEvidenceId": "sahihayn-bukhari-1",
+          "supportedMeaning": "الحديث يبيّن أن الأعمال تُقَيَّمُ بحسب النِّيَّة.",
+          "unsupportedPart": null,
+          "missingContext": null,
+          "reasoning": "النص «إنما الأعمال بالنيات» موجود حرفيًا في الحديث المرفق، وبالتالي الاقتباس مباشر ولا يوجد إغفال أو تعديل.",
+          "requiresSpecialist": false
+        }
+      }
+    },
+    {
+      "path": "/api/analyze/evidence",
+      "status": 200,
+      "body": {
+        "evidence": [
+          {
+            "id": "sahihayn-bukhari-1",
+            "sourceType": "HADITH",
+            "title": "صحيح البخاري — 1",
+            "exactText": "حَدَّثَنَا الْحُمَيْدِيُّ عَبْدُ اللَّهِ بْنُ الزُّبَيْرِ ، قَالَ : حَدَّثَنَا سُفْيَانُ ، قَالَ : حَدَّثَنَا يَحْيَى بْنُ سَعِيدٍ الْأَنْصَارِيُّ ، قَالَ : أَخْبَرَنِي مُحَمَّدُ بْنُ إِبْرَاهِيمَ التَّيْمِيُّ ، أَنَّهُ سَمِعَ عَلْقَمَةَ بْنَ وَقَّاصٍ اللَّيْثِيَّ ، يَقُولُ : سَمِعْتُ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ، قَالَ : سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، يَقُولُ : \" إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ \"",
+            "reference": "صحيح البخاري، حديث 1",
+            "canonicalUrl": "https://sunnah.com/bukhari:1",
+            "sourceName": "صحيح البخاري",
+            "relevanceScore": 0.98,
+            "metadata": {
+              "chapterNumber": 1,
+              "inBookReference": "Book 1, Hadith 1",
+              "grading": null,
+              "collection": "bukhari",
+              "collectionArabic": "صحيح البخاري",
+              "hadithNumber": "1",
+              "chapter": "باب كَيْفَ كَانَ بَدْءُ الْوَحْىِ إِلَى رَسُولِ اللَّهِ صلى الله عليه وسلم",
+              "provider": "local-sahihayn",
+              "retrievalRole": "LOCAL_PRIMARY",
+              "dataset": "meeAtif/hadith_datasets",
+              "datasetRevision": "cd62605e4fef3c46968a5f9fdcccbbbffdf631b5",
+              "format": "plain-text",
+              "matchMethod": "phrase-containment"
+            }
+          }
+        ],
+        "retrieval": {
+          "hadithCorpus": "SAHIHAYN",
+          "hadith": "LOCAL_PRIMARY",
+          "dorar": "DISABLED",
+          "quranpedia": "NOT_REQUESTED"
+        },
+        "resolution": {
+          "evidenceOrigin": "CONTEXTUAL_ANCHOR",
+          "evidenceAnchorClaimId": "claim-1"
+        }
+      }
+    },
+    {
+      "path": "/api/analyze/relation",
+      "status": 502,
+      "body": {
+        "error": {
+          "code": "AI_UNAVAILABLE"
+        }
+      }
+    },
+    {
+      "path": "/api/analyze/relation",
+      "status": 200,
+      "body": {
+        "analysis": {
+          "verificationStatus": "UNSUPPORTED",
+          "relationType": "UNSUPPORTED_INFERENCE",
+          "strongestEvidenceId": "sahihayn-bukhari-1",
+          "supportedMeaning": "النص يوضح أن الأعمال تُقَيَّمُ بالنية وأن لكلِّ إنسانٍ ما نوى، ولا يذكر أي شرط للراحة النفسية أو قبول العمل بناءً عليها.",
+          "unsupportedPart": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+          "missingContext": null,
+          "reasoning": "الحديث يقتصر على النية ولا يتناول الشعور بالراحة النفسية، لذا الاستنتاج المقدم غير مستند إلى النص.",
+          "requiresSpecialist": false
+        }
+      }
+    },
+    {
+      "path": "/api/analyze/patch",
+      "status": 502,
+      "body": {
+        "error": {
+          "code": "AI_UNAVAILABLE"
+        }
+      }
+    },
+    {
+      "path": "/api/analyze/patch",
+      "status": 502,
+      "body": {
+        "error": {
+          "code": "AI_UNAVAILABLE"
+        }
+      }
+    },
+    {
+      "path": "/api/analyze/patch",
+      "status": 502,
+      "body": {
+        "error": {
+          "code": "AI_UNAVAILABLE"
+        }
+      }
+    }
+  ],
+  "responsive": [
+    {
+      "label": "landing",
+      "width": 1600,
+      "scrollWidth": 1600,
+      "rtl": "rtl",
+      "inputTop": 542.375
+    },
+    {
+      "label": "landing",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "rtl": "rtl",
+      "inputTop": 542.375
+    },
+    {
+      "label": "landing",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "rtl": "rtl",
+      "inputTop": 539.9375
+    },
+    {
+      "label": "landing",
+      "width": 390,
+      "scrollWidth": 390,
+      "rtl": "rtl",
+      "inputTop": 683.5
+    },
+    {
+      "label": "landing",
+      "width": 320,
+      "scrollWidth": 320,
+      "rtl": "rtl",
+      "inputTop": 748.5
+    }
+  ],
+  "errors": [
+    {
+      "stage": "تحليل العلاقة",
+      "text": "تعذر إكمال التحليل مؤقتًا\n\nتعذر إكمال التحليل مؤقتًا. لم يتم إصدار نتيجة غير موثقة. حاول مرة أخرى بعد لحظات.\n\nلم يصدر يقين نتيجة غير موثقة.\n\nإعادة المحاولة"
+    },
+    {
+      "stage": "اقتراح تصحيح يقين",
+      "text": "تعذر إكمال التحليل مؤقتًا\n\nتعذر إكمال التحليل مؤقتًا. لم يتم إصدار نتيجة غير موثقة. حاول مرة أخرى بعد لحظات.\n\nلم يصدر يقين نتيجة غير موثقة.\n\nإعادة المحاولة"
+    },
+    {
+      "stage": "اقتراح تصحيح يقين",
+      "text": "تعذر إكمال التحليل مؤقتًا\n\nتعذر إكمال التحليل مؤقتًا. لم يتم إصدار نتيجة غير موثقة. حاول مرة أخرى بعد لحظات.\n\nلم يصدر يقين نتيجة غير موثقة.\n\nإعادة المحاولة"
+    },
+    {
+      "stage": "اقتراح تصحيح يقين",
+      "text": "تعذر إكمال التحليل مؤقتًا\n\nتعذر إكمال التحليل مؤقتًا. لم يتم إصدار نتيجة غير موثقة. حاول مرة أخرى بعد لحظات.\n\nلم يصدر يقين نتيجة غير موثقة.\n\nإعادة المحاولة"
+    }
+  ],
+  "blocker": "اقتراح تصحيح يقين: could not complete after explicit retries"
+}

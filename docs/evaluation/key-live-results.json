@@ -1,0 +1,155 @@
+{
+  "methodologyVersion": 2,
+  "recordedAt": "2026-10-05T19:32:31.371Z",
+  "model": "openai/gpt-oss-120b",
+  "scope": "key-case-smoke",
+  "labelVersion": 1,
+  "caseCount": 3,
+  "runs": 1,
+  "concurrency": 1,
+  "delayMs": 20000,
+  "resultCache": "bypassed",
+  "method": "Fixed manually reviewed approved reference per case; real reasoning and Patch; sequential shared bounded retries. Availability, valid-stage semantics and end-to-end success reported separately. No extraction benchmark or test mocks.",
+  "metrics": {
+    "providerAvailability": {
+      "attemptedAiObservations": 2,
+      "successfulObservations": 1,
+      "providerFailures": 1,
+      "invalidOutputFailures": 0,
+      "otherFailures": 0,
+      "availabilityRate": {
+        "correct": 1,
+        "total": 2,
+        "rate": 0.5
+      },
+      "actualHttpAttempts": 2
+    },
+    "semanticPerformance": {
+      "statusClassificationAccuracy": {
+        "correct": 2,
+        "total": 2,
+        "rate": 1
+      },
+      "mutationClassificationAccuracy": {
+        "correct": 2,
+        "total": 2,
+        "rate": 1
+      },
+      "aiReasoningOnly": {
+        "statusClassificationAccuracy": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1
+        },
+        "mutationClassificationAccuracy": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1
+        }
+      },
+      "unsupportedInferenceDetection": {
+        "correct": 0,
+        "total": 0,
+        "rate": null
+      },
+      "abstentionAccuracy": {
+        "correct": 1,
+        "total": 1,
+        "rate": 1
+      },
+      "evidenceReferenceValidity": {
+        "correct": 2,
+        "total": 2,
+        "rate": 1
+      },
+      "patchDecisionAccuracy": {
+        "correct": 2,
+        "total": 2,
+        "rate": 1
+      },
+      "pairedBaselineStatusAccuracy": {
+        "correct": 1,
+        "total": 2,
+        "rate": 0.5
+      }
+    },
+    "endToEnd": {
+      "totalObservations": 3,
+      "completedObservations": 2,
+      "completionRate": {
+        "correct": 2,
+        "total": 3,
+        "rate": 0.6666666666666666
+      },
+      "successRate": {
+        "correct": 2,
+        "total": 3,
+        "rate": 0.6666666666666666
+      },
+      "failedObservations": 1,
+      "deterministicObservations": 1
+    }
+  },
+  "stability": null,
+  "observations": [
+    {
+      "caseId": "exact-quote",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 1,
+      "analysis": {
+        "verificationStatus": "SUPPORTED",
+        "relationType": "DIRECT_QUOTE",
+        "strongestEvidenceId": "sahihayn-bukhari-1",
+        "supportedMeaning": "النص يبيّن أن الأعمال تُقَيَّمُ بالنِّيَّاتِ وأن لكلِّ إنسانٍ ما نوى",
+        "unsupportedPart": null,
+        "missingContext": null,
+        "reasoning": "النص في الحديث يحتوي العبارة «إنما الأعمال بالنيات» دون تعديل، لذا يُعَدُّ اقتباسًا مباشرًا",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "إنما الأعمال بالنيات",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "الادعاء أمين للأدلة المقدمة؛ لا يحتاج إلى تصحيح يقين."
+      },
+      "providerStatus": 200
+    },
+    {
+      "caseId": "comfort-inference",
+      "run": 1,
+      "referenceValid": false,
+      "providerAttempts": 1,
+      "error": "AI_UNAVAILABLE",
+      "providerStatus": 429
+    },
+    {
+      "caseId": "specialist",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 0,
+      "analysis": {
+        "verificationStatus": "REQUIRES_SPECIALIST",
+        "relationType": "NONE",
+        "strongestEvidenceId": null,
+        "supportedMeaning": "لا تكفي المقارنة النصية لإصدار حكم ديني على حالة شخصية.",
+        "unsupportedPart": null,
+        "missingContext": "تحتاج ظروف الحالة الشخصية وتطبيق الحكم إلى مراجعة مختص.",
+        "reasoning": "الادعاء يتعلق بتطبيق ديني على حالة شخصية؛ يحيل يقين هذه المسألة إلى مختص دون فتوى.",
+        "requiresSpecialist": true
+      },
+      "patch": {
+        "action": "REFER_SPECIALIST",
+        "originalText": "هل تقبل صلاتي إذا كانت نيتي حسنة ولكني لم أشعر بالراحة النفسية؟",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "يُحفظ السؤال دون إصدار حكم شخصي.",
+        "evidenceIds": [],
+        "explanation": "تحتاج المسألة إلى مراجعة مختص؛ لا يقترح يقين فتوى أو تصحيحًا لحكم شخصي."
+      }
+    }
+  ]
+}

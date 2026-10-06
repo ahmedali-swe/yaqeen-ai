@@ -3,8 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@10.18.3",
-  "engines": { "node": ">=22.13.0" },
-  "pnpm": { "onlyBuiltDependencies": ["esbuild", "unrs-resolver"] },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "unrs-resolver"
+    ]
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,12 +20,17 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "eval:live": "node --conditions=react-server --import tsx scripts/evaluate-live.ts",
+    "source:validate": "node --conditions=react-server --import tsx scripts/validate-hadeethenc.ts",
     "env:check": "tsx scripts/check-env.ts",
     "db:migrate": "tsx scripts/migrate.ts",
     "db:check": "tsx scripts/check-db.ts"
   },
   "dependencies": {
+    "@google/genai": "2.27.0",
     "@next/env": "16.3.8",
+    "html-to-text": "9.0.5",
+    "htmlparser2": "8.0.2",
     "lucide-react": "1.52.0",
     "next": "16.3.8",
     "pg": "8.23.1",
@@ -32,6 +44,7 @@
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.3",
     "@testing-library/user-event": "14.6.7",
+    "@types/html-to-text": "9.0.4",
     "@types/node": "24.19.1",
     "@types/pg": "8.23.1",
     "@types/react": "19.3.0",

@@ -1,0 +1,12 @@
+{
+  "recordedAt": "2026-10-05T17:53:01.708Z",
+  "deliberatelyInvalidTestKey": true,
+  "upstreamStatus": 401,
+  "endpointStatus": 502,
+  "body": {
+    "error": {
+      "code": "AI_UNAVAILABLE"
+    }
+  },
+  "sanitized": true
+}

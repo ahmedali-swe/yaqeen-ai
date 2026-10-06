@@ -1,4 +1,4 @@
-/** Stable domain vocabulary. No verification engine is implemented. */
+/** Stable vocabulary shared with evidence-scoped AI reasoning. */
 export const MutationType = {
   DIRECT_QUOTE: "DIRECT_QUOTE",
   PARAPHRASE: "PARAPHRASE",

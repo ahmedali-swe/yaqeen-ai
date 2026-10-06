@@ -1,0 +1,231 @@
+{
+  "recordedAt": "2026-10-06T11:36:22.602Z",
+  "mode": "Actual local HTTP endpoints, sequential public Bukhari 71 flow",
+  "requests": [
+    {
+      "stage": "claims",
+      "status": 200
+    },
+    {
+      "stage": "evidence",
+      "status": 200
+    },
+    {
+      "stage": "relation",
+      "status": 200
+    },
+    {
+      "stage": "evidence",
+      "status": 200
+    },
+    {
+      "stage": "relation",
+      "status": 200
+    },
+    {
+      "stage": "patch",
+      "status": 200
+    }
+  ],
+  "previousAttempts": [
+    {
+      "recordedAt": "2026-10-06T11:21:25.598Z",
+      "requests": [
+        {
+          "stage": "claims",
+          "status": 403
+        }
+      ],
+      "blocker": "HTTP_claims_403"
+    },
+    {
+      "recordedAt": "2026-10-06T11:22:02.512Z",
+      "requests": [
+        {
+          "stage": "claims",
+          "status": 200
+        },
+        {
+          "stage": "evidence",
+          "status": 200
+        },
+        {
+          "stage": "relation",
+          "status": 200
+        },
+        {
+          "stage": "evidence",
+          "status": 200
+        },
+        {
+          "stage": "relation",
+          "status": 200
+        },
+        {
+          "stage": "patch",
+          "status": 200
+        }
+      ],
+      "blocker": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-1",
+      "text": "«من يرد الله به خيرًا يفقهه في الدين»",
+      "normalizedText": "من يرد الله به خيرًا يفقهه في الدين",
+      "claimType": "QUOTE",
+      "subject": null,
+      "attributedTo": "الكاتب",
+      "sourceMentioned": null,
+      "isVerifiable": true,
+      "verificationReason": "يمكن التحقق من قول الكاتب بهذه العبارة في نصه الأصلي.",
+      "originalStart": 12,
+      "originalEnd": 49
+    },
+    {
+      "id": "claim-2",
+      "text": "كل من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع فهذا دليل على أن الله لا يريد به خيرًا",
+      "normalizedText": "كل من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع فهذا دليل على أن الله لا يريد به خيرًا",
+      "claimType": "INTERPRETATION",
+      "subject": "كل من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع",
+      "attributedTo": "الكاتب",
+      "sourceMentioned": null,
+      "isVerifiable": true,
+      "verificationReason": "يمكن التحقق من استنتاج الكاتب في النص المذكور.",
+      "originalStart": 64,
+      "originalEnd": 155
+    }
+  ],
+  "quote": {
+    "resolution": {
+      "evidenceOrigin": "DIRECT",
+      "evidenceAnchorClaimId": null
+    },
+    "approvedSourceIds": [
+      {
+        "evidenceId": "sahihayn-bukhari-71",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-bukhari-3116",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-bukhari-7312",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-muslim-1037a",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-muslim-1037b",
+        "sourceId": "5518"
+      }
+    ],
+    "candidatesStored": 5,
+    "request": {
+      "operation": "claim_evidence_relation",
+      "bytes": 7949,
+      "originalContent": 156,
+      "claim": 124,
+      "evidenceText": 472,
+      "approvedExplanation": 356,
+      "hints": 0,
+      "other": 754,
+      "evidenceCandidates": 1
+    },
+    "analysis": {
+      "verificationStatus": "SUPPORTED",
+      "relationType": "DIRECT_QUOTE",
+      "strongestEvidenceId": "sahihayn-bukhari-71",
+      "supportedMeaning": "العبارة «من يرد الله به خيرًا يفقهه في الدين» موجودة نصًا في الحديث المذكور",
+      "unsupportedPart": null,
+      "missingContext": null,
+      "reasoning": "النص في الحديث رقم 71 من صحيح البخاري يحتوي على العبارة نفسها بالضبط، وبالتالي الاقتباس في الادعاء مطابق للنص دون تعديل أو حذف غير ذي صلة",
+      "requiresSpecialist": false
+    }
+  },
+  "inference": {
+    "resolution": {
+      "evidenceOrigin": "CONTEXTUAL_ANCHOR",
+      "evidenceAnchorClaimId": "claim-1"
+    },
+    "approvedSourceIds": [
+      {
+        "evidenceId": "sahihayn-bukhari-71",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-bukhari-3116",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-bukhari-7312",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-muslim-1037a",
+        "sourceId": "5518"
+      },
+      {
+        "evidenceId": "sahihayn-muslim-1037b",
+        "sourceId": "5518"
+      }
+    ],
+    "candidatesStored": 5,
+    "request": {
+      "operation": "claim_evidence_relation",
+      "bytes": 8182,
+      "originalContent": 156,
+      "claim": 193,
+      "evidenceText": 472,
+      "approvedExplanation": 356,
+      "hints": 0,
+      "other": 857,
+      "evidenceCandidates": 1
+    },
+    "analysis": {
+      "verificationStatus": "UNSUPPORTED",
+      "relationType": "UNSUPPORTED_INFERENCE",
+      "strongestEvidenceId": "sahihayn-bukhari-71",
+      "supportedMeaning": "لا يوجد معنى مدعوم من النص",
+      "unsupportedPart": "كل من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع فهذا دليل على أن الله لا يريد به خيرًا",
+      "missingContext": null,
+      "reasoning": "النص يذكر أن من يريد الله به خيرًا يفقهه في الدين، ولا يذكر أن من لا يفقه لا يرغب الله به خيرًا؛ لذا الاستنتاج عكسي وغير مستند إلى النص",
+      "requiresSpecialist": false
+    }
+  },
+  "patch": {
+    "request": {
+      "operation": "yaqeen_patch",
+      "bytes": 8342,
+      "originalContent": 156,
+      "claim": 193,
+      "evidenceText": 472,
+      "approvedExplanation": 356,
+      "hints": 0,
+      "other": 1273,
+      "evidenceCandidates": 1
+    },
+    "result": {
+      "action": "PATCH",
+      "originalText": "كل من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع فهذا دليل على أن الله لا يريد به خيرًا",
+      "proposedText": "لا يكفي هذا الحديث للاستدلال على أن كل من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع فهذا دليل على أن الله لا يريد به خيرًا",
+      "changes": [
+        {
+          "originalSegment": "كل",
+          "replacementSegment": "لا يكفي هذا الحديث للاستدلال على أن كل",
+          "mutationType": "UNSUPPORTED_INFERENCE",
+          "reason": "الاستنتاج لا يستند إلى النص؛ النص يذكر فقط أن من يريد الله به خيرًا يفقهه في الدين"
+        }
+      ],
+      "preservedIntent": "الإشارة إلى أن الاستنتاج غير مدعوم بالنص",
+      "evidenceIds": [
+        "sahihayn-bukhari-71"
+      ],
+      "explanation": "الحديث لا يثبت أن عدم التخصص دليل على أن الله لا يريد له خيرًا"
+    }
+  }
+}

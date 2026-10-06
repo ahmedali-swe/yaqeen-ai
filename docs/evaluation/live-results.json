@@ -1,0 +1,256 @@
+{
+  "recordedAt": "2026-10-05T18:44:36.651Z",
+  "model": "openai/gpt-oss-120b",
+  "scope": "full-labeled-suite",
+  "labelVersion": 1,
+  "caseCount": 10,
+  "runs": 1,
+  "method": "Fixed manually reviewed approved reference per case; real reasoning and Patch; no extraction benchmark, optional sources or test mocks.",
+  "metrics": {
+    "providerAvailability": {
+      "attemptedAiObservations": 8,
+      "successfulObservations": 3,
+      "providerFailures": 5,
+      "invalidOutputFailures": 0,
+      "otherFailures": 0,
+      "availabilityRate": {
+        "correct": 3,
+        "total": 8,
+        "rate": 0.375
+      },
+      "actualHttpAttempts": 20
+    },
+    "semanticPerformance": {
+      "statusClassificationAccuracy": {
+        "correct": 5,
+        "total": 5,
+        "rate": 1
+      },
+      "mutationClassificationAccuracy": {
+        "correct": 5,
+        "total": 5,
+        "rate": 1
+      },
+      "aiReasoningOnly": {
+        "statusClassificationAccuracy": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1
+        },
+        "mutationClassificationAccuracy": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1
+        }
+      },
+      "unsupportedInferenceDetection": {
+        "correct": 0,
+        "total": 0,
+        "rate": null
+      },
+      "abstentionAccuracy": {
+        "correct": 2,
+        "total": 2,
+        "rate": 1
+      },
+      "evidenceReferenceValidity": {
+        "correct": 5,
+        "total": 5,
+        "rate": 1
+      },
+      "patchDecisionAccuracy": {
+        "correct": 5,
+        "total": 5,
+        "rate": 1
+      },
+      "pairedBaselineStatusAccuracy": {
+        "correct": 4,
+        "total": 5,
+        "rate": 0.8
+      }
+    },
+    "endToEnd": {
+      "totalObservations": 10,
+      "completedObservations": 5,
+      "completionRate": {
+        "correct": 5,
+        "total": 10,
+        "rate": 0.5
+      },
+      "successRate": {
+        "correct": 5,
+        "total": 10,
+        "rate": 0.5
+      },
+      "failedObservations": 5,
+      "deterministicObservations": 2
+    }
+  },
+  "stability": null,
+  "observations": [
+    {
+      "caseId": "exact-quote",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 1,
+      "analysis": {
+        "verificationStatus": "SUPPORTED",
+        "relationType": "DIRECT_QUOTE",
+        "strongestEvidenceId": "sahihayn-bukhari-1",
+        "supportedMeaning": "النص في الحديث يذكر أن الأعمال تُقَيَّمُ بالنِّيَّاتِ، وهو ما يتطابق مع العبارة المذكورة في الادعاء.",
+        "unsupportedPart": null,
+        "missingContext": null,
+        "reasoning": "العبارة \"إنما الأعمال بالنيات\" موجودة حرفيًا في الحديث المرفق دون تعديل أو حذف مؤهلات، لذا يُعد اقتباسًا مباشرًا.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "إنما الأعمال بالنيات",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "الادعاء أمين للأدلة المقدمة؛ لا يحتاج إلى تصحيح يقين."
+      }
+    },
+    {
+      "caseId": "faithful-paraphrase",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 1,
+      "analysis": {
+        "verificationStatus": "SUPPORTED",
+        "relationType": "PARAPHRASE",
+        "strongestEvidenceId": "sahihayn-bukhari-1",
+        "supportedMeaning": "الأعمال تُقَيَّمُ بحسب النية، وكل إنسان يحصل على ما نوى.",
+        "unsupportedPart": null,
+        "missingContext": null,
+        "reasoning": "النص الوارد في الحديث يذكر أن الأعمال بالنيات ولكل امرئ ما نوى، وهذا يطابق مضمون الادعاء.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "الأعمال مرتبطة بالنيات، ولكل إنسان ما نواه.",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "الادعاء أمين للأدلة المقدمة؛ لا يحتاج إلى تصحيح يقين."
+      }
+    },
+    {
+      "caseId": "comfort-inference",
+      "run": 1,
+      "referenceValid": false,
+      "providerAttempts": 3,
+      "error": "AI_UNAVAILABLE"
+    },
+    {
+      "caseId": "overgeneralization",
+      "run": 1,
+      "referenceValid": false,
+      "providerAttempts": 3,
+      "error": "AI_UNAVAILABLE"
+    },
+    {
+      "caseId": "missing-context",
+      "run": 1,
+      "referenceValid": false,
+      "providerAttempts": 3,
+      "error": "AI_UNAVAILABLE"
+    },
+    {
+      "caseId": "incorrect-attribution",
+      "run": 1,
+      "referenceValid": false,
+      "providerAttempts": 3,
+      "error": "AI_UNAVAILABLE"
+    },
+    {
+      "caseId": "insufficient-evidence",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 0,
+      "analysis": {
+        "verificationStatus": "NEEDS_CONTEXT",
+        "relationType": "NONE",
+        "strongestEvidenceId": null,
+        "supportedMeaning": "لم تُقدَّم أدلة يمكن تحديد معنى مدعوم منها.",
+        "unsupportedPart": null,
+        "missingContext": "يلزم دليل من مصدر معتمد قبل تقييم العلاقة بهذا الادعاء.",
+        "reasoning": "غياب الأدلة المقدمة يمنع تقييم أمانة النقل أو الاستدلال؛ لا يمثل ذلك حكمًا على صحة الادعاء.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "يذكر النص حكمًا لا يتوفر له دليل ضمن المصادر المقدمة.",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "لا تتوفر أدلة كافية ضمن المصادر المتاحة لاقتراح تصحيح آمن."
+      }
+    },
+    {
+      "caseId": "specialist",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 0,
+      "analysis": {
+        "verificationStatus": "REQUIRES_SPECIALIST",
+        "relationType": "NONE",
+        "strongestEvidenceId": null,
+        "supportedMeaning": "لا تكفي المقارنة النصية لإصدار حكم ديني على حالة شخصية.",
+        "unsupportedPart": null,
+        "missingContext": "تحتاج ظروف الحالة الشخصية وتطبيق الحكم إلى مراجعة مختص.",
+        "reasoning": "الادعاء يتعلق بتطبيق ديني على حالة شخصية؛ يحيل يقين هذه المسألة إلى مختص دون فتوى.",
+        "requiresSpecialist": true
+      },
+      "patch": {
+        "action": "REFER_SPECIALIST",
+        "originalText": "هل تقبل صلاتي إذا كانت نيتي حسنة ولكني لم أشعر بالراحة النفسية؟",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "يُحفظ السؤال دون إصدار حكم شخصي.",
+        "evidenceIds": [],
+        "explanation": "تحتاج المسألة إلى مراجعة مختص؛ لا يقترح يقين فتوى أو تصحيحًا لحكم شخصي."
+      }
+    },
+    {
+      "caseId": "muslim-quote",
+      "run": 1,
+      "referenceValid": true,
+      "providerAttempts": 3,
+      "analysis": {
+        "verificationStatus": "SUPPORTED",
+        "relationType": "DIRECT_QUOTE",
+        "strongestEvidenceId": "sahihayn-muslim-223",
+        "supportedMeaning": "الحديث يذكر أن الطهارة شطر الإيمان.",
+        "unsupportedPart": null,
+        "missingContext": null,
+        "reasoning": "النص الوارد في الحديث يطابق تمامًا العبارة المذكورة في الادعاء دون تعديل أو حذف.",
+        "requiresSpecialist": false
+      },
+      "patch": {
+        "action": "NO_SAFE_PATCH",
+        "originalText": "الطهور شطر الإيمان",
+        "proposedText": null,
+        "changes": [],
+        "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+        "evidenceIds": [],
+        "explanation": "الادعاء أمين للأدلة المقدمة؛ لا يحتاج إلى تصحيح يقين."
+      }
+    },
+    {
+      "caseId": "bukhari-knowledge",
+      "run": 1,
+      "referenceValid": false,
+      "providerAttempts": 3,
+      "error": "AI_UNAVAILABLE"
+    }
+  ],
+  "methodologyVersion": 2,
+  "metricsRecomputedAt": "2026-10-05T19:22:04.699Z",
+  "originalReport": "legacy-rate-limited-results.json",
+  "recomputationNote": "Only metric definitions were corrected from retained actual observations. No new provider calls, replaced outputs, or relabeling."
+}

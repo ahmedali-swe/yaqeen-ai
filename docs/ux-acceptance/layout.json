@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-10-05T20:58:28.271Z",
+  "origin": "http://127.0.0.1:3100",
+  "live": true,
+  "requests": [],
+  "responsive": [
+    {
+      "label": "landing",
+      "width": 1600,
+      "scrollWidth": 1600,
+      "rtl": "rtl",
+      "inputTop": 542.375
+    },
+    {
+      "label": "landing",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "rtl": "rtl",
+      "inputTop": 542.375
+    },
+    {
+      "label": "landing",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "rtl": "rtl",
+      "inputTop": 539.9375
+    },
+    {
+      "label": "landing",
+      "width": 390,
+      "scrollWidth": 390,
+      "rtl": "rtl",
+      "inputTop": 683.5
+    },
+    {
+      "label": "landing",
+      "width": 320,
+      "scrollWidth": 320,
+      "rtl": "rtl",
+      "inputTop": 748.5
+    }
+  ],
+  "errors": [],
+  "supersededBy": "recorded-visual-check.json",
+  "note": "Initial landing-only check. Final-build dimensions and keyboard results are in recorded-visual-check.json; its landing captures use the actual page."
+}

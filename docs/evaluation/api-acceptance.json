@@ -1,0 +1,267 @@
+{
+  "recordedAt": "2026-10-05T17:54:39.141Z",
+  "productionBuild": true,
+  "dorarDisabled": true,
+  "steps": {
+    "health": {
+      "status": 200,
+      "body": {
+        "status": "ready",
+        "checks": {
+          "aiConfigured": true,
+          "localCorpus": true
+        },
+        "externalServicesProbed": false
+      }
+    },
+    "extraction": {
+      "status": 200,
+      "body": {
+        "claims": [
+          {
+            "id": "claim-1",
+            "text": "«إنما الأعمال بالنيات»",
+            "normalizedText": "إنما الأعمال بالنيات",
+            "claimType": "QUOTE",
+            "subject": "الحديث",
+            "attributedTo": "الكاتب",
+            "sourceMentioned": null,
+            "isVerifiable": true,
+            "verificationReason": "Can be checked against the writer's text or known hadith collections",
+            "originalStart": 12,
+            "originalEnd": 34
+          },
+          {
+            "id": "claim-2",
+            "text": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+            "normalizedText": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+            "claimType": "INTERPRETATION",
+            "subject": "الحديث",
+            "attributedTo": "الكاتب",
+            "sourceMentioned": null,
+            "isVerifiable": true,
+            "verificationReason": "Can be verified by locating the writer's statement in the text",
+            "originalStart": 46,
+            "originalEnd": 118
+          }
+        ]
+      }
+    },
+    "localEvidence": {
+      "status": 200,
+      "body": {
+        "evidence": [
+          {
+            "id": "sahihayn-bukhari-1",
+            "sourceType": "HADITH",
+            "title": "صحيح البخاري — 1",
+            "exactText": "حَدَّثَنَا الْحُمَيْدِيُّ عَبْدُ اللَّهِ بْنُ الزُّبَيْرِ ، قَالَ : حَدَّثَنَا سُفْيَانُ ، قَالَ : حَدَّثَنَا يَحْيَى بْنُ سَعِيدٍ الْأَنْصَارِيُّ ، قَالَ : أَخْبَرَنِي مُحَمَّدُ بْنُ إِبْرَاهِيمَ التَّيْمِيُّ ، أَنَّهُ سَمِعَ عَلْقَمَةَ بْنَ وَقَّاصٍ اللَّيْثِيَّ ، يَقُولُ : سَمِعْتُ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ، قَالَ : سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، يَقُولُ : \" إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ \"",
+            "reference": "صحيح البخاري، حديث 1",
+            "canonicalUrl": "https://sunnah.com/bukhari:1",
+            "sourceName": "صحيح البخاري",
+            "relevanceScore": 0.98,
+            "metadata": {
+              "chapterNumber": 1,
+              "inBookReference": "Book 1, Hadith 1",
+              "grading": null,
+              "collection": "bukhari",
+              "collectionArabic": "صحيح البخاري",
+              "hadithNumber": "1",
+              "chapter": "باب كَيْفَ كَانَ بَدْءُ الْوَحْىِ إِلَى رَسُولِ اللَّهِ صلى الله عليه وسلم",
+              "provider": "local-sahihayn",
+              "retrievalRole": "LOCAL_PRIMARY",
+              "dataset": "meeAtif/hadith_datasets",
+              "datasetRevision": "cd62605e4fef3c46968a5f9fdcccbbbffdf631b5",
+              "format": "plain-text",
+              "matchMethod": "phrase-containment"
+            }
+          }
+        ],
+        "retrieval": {
+          "hadithCorpus": "SAHIHAYN",
+          "hadith": "LOCAL_PRIMARY",
+          "dorar": "DISABLED",
+          "quranpedia": "NOT_REQUESTED"
+        }
+      }
+    },
+    "quotationRelation": {
+      "status": 200,
+      "body": {
+        "analysis": {
+          "verificationStatus": "SUPPORTED",
+          "relationType": "DIRECT_QUOTE",
+          "strongestEvidenceId": "sahihayn-bukhari-1",
+          "supportedMeaning": "النص يذكر أن الأعمال تُقَيَّمُ بالنيات وأن لكل إنسان ما نوى.",
+          "unsupportedPart": null,
+          "missingContext": null,
+          "reasoning": "العبارة «إنما الأعمال بالنيات» موجودة حرفيًا في النص الوارد في صحيح البخاري، ولا توجد إزاحة أو تعديل.",
+          "requiresSpecialist": false
+        }
+      }
+    },
+    "quotationPatch": {
+      "status": 200,
+      "body": {
+        "patch": {
+          "action": "NO_SAFE_PATCH",
+          "originalText": "«إنما الأعمال بالنيات»",
+          "proposedText": null,
+          "changes": [],
+          "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+          "evidenceIds": [],
+          "explanation": "الادعاء أمين للأدلة المقدمة؛ لا يحتاج إلى تصحيح يقين."
+        }
+      }
+    },
+    "interpretationRelation": {
+      "status": 200,
+      "body": {
+        "analysis": {
+          "verificationStatus": "UNSUPPORTED",
+          "relationType": "UNSUPPORTED_INFERENCE",
+          "strongestEvidenceId": "sahihayn-bukhari-1",
+          "supportedMeaning": "الحديث يبيّن أن الأعمال تُقَيَّمُ بحسب النية ولا يذكر الراحة النفسية.",
+          "unsupportedPart": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+          "missingContext": null,
+          "reasoning": "النص يحدّد أن الأعمال بالنيات فقط ولا يربطها بالراحة النفسية، لذا الاستنتاج غير مستند إلى النص.",
+          "requiresSpecialist": false
+        }
+      }
+    },
+    "interpretationPatch": {
+      "status": 200,
+      "body": {
+        "patch": {
+          "action": "PATCH",
+          "originalText": "هذا الحديث يعني أن كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+          "proposedText": "هذا الحديث يعني أن الأعمال بالنيات",
+          "changes": [
+            {
+              "originalSegment": "كل عمل لا يشعر صاحبه بالراحة النفسية هو عمل غير مقبول",
+              "replacementSegment": "الأعمال بالنيات",
+              "mutationType": "UNSUPPORTED_INFERENCE",
+              "reason": "الاستنتاج غير مدعوم بالنص"
+            }
+          ],
+          "preservedIntent": "الإشارة إلى أن الأعمال تُقَيَّمُ بالنية",
+          "evidenceIds": [
+            "sahihayn-bukhari-1"
+          ],
+          "explanation": "الحديث يذكر النية فقط ولا يربطها بالراحة النفسية"
+        }
+      }
+    },
+    "repeatedInterpretationRelation": {
+      "status": 502,
+      "body": {
+        "error": {
+          "code": "AI_UNAVAILABLE"
+        }
+      }
+    },
+    "repeatedInterpretationRelationInitialFailure": {
+      "status": 502,
+      "body": {
+        "error": {
+          "code": "AI_UNAVAILABLE"
+        }
+      }
+    },
+    "finalBuildHealth": {
+      "status": 200,
+      "body": {
+        "status": "ready",
+        "checks": {
+          "aiConfigured": true,
+          "localCorpus": true
+        },
+        "externalServicesProbed": false
+      }
+    },
+    "sourceAfterPatch": {
+      "status": 200,
+      "body": {
+        "evidence": [
+          {
+            "id": "sahihayn-bukhari-1",
+            "sourceType": "HADITH",
+            "title": "صحيح البخاري — 1",
+            "exactText": "حَدَّثَنَا الْحُمَيْدِيُّ عَبْدُ اللَّهِ بْنُ الزُّبَيْرِ ، قَالَ : حَدَّثَنَا سُفْيَانُ ، قَالَ : حَدَّثَنَا يَحْيَى بْنُ سَعِيدٍ الْأَنْصَارِيُّ ، قَالَ : أَخْبَرَنِي مُحَمَّدُ بْنُ إِبْرَاهِيمَ التَّيْمِيُّ ، أَنَّهُ سَمِعَ عَلْقَمَةَ بْنَ وَقَّاصٍ اللَّيْثِيَّ ، يَقُولُ : سَمِعْتُ عُمَرَ بْنَ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ عَلَى الْمِنْبَرِ، قَالَ : سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، يَقُولُ : \" إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى دُنْيَا يُصِيبُهَا أَوْ إِلَى امْرَأَةٍ يَنْكِحُهَا، فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ \"",
+            "reference": "صحيح البخاري، حديث 1",
+            "canonicalUrl": "https://sunnah.com/bukhari:1",
+            "sourceName": "صحيح البخاري",
+            "relevanceScore": 0.98,
+            "metadata": {
+              "chapterNumber": 1,
+              "inBookReference": "Book 1, Hadith 1",
+              "grading": null,
+              "collection": "bukhari",
+              "collectionArabic": "صحيح البخاري",
+              "hadithNumber": "1",
+              "chapter": "باب كَيْفَ كَانَ بَدْءُ الْوَحْىِ إِلَى رَسُولِ اللَّهِ صلى الله عليه وسلم",
+              "provider": "local-sahihayn",
+              "retrievalRole": "LOCAL_PRIMARY",
+              "dataset": "meeAtif/hadith_datasets",
+              "datasetRevision": "cd62605e4fef3c46968a5f9fdcccbbbffdf631b5",
+              "format": "plain-text",
+              "matchMethod": "phrase-containment"
+            }
+          }
+        ],
+        "retrieval": {
+          "hadithCorpus": "SAHIHAYN",
+          "hadith": "LOCAL_PRIMARY",
+          "dorar": "DISABLED",
+          "quranpedia": "NOT_REQUESTED"
+        }
+      }
+    },
+    "unrelatedRetrieval": {
+      "status": 200,
+      "body": {
+        "evidence": [],
+        "retrieval": {
+          "hadithCorpus": "SAHIHAYN",
+          "hadith": "NO_LOCAL_MATCH",
+          "dorar": "DISABLED",
+          "quranpedia": "AVAILABLE"
+        }
+      }
+    },
+    "noEvidenceRelation": {
+      "status": 200,
+      "body": {
+        "analysis": {
+          "verificationStatus": "NEEDS_CONTEXT",
+          "relationType": "NONE",
+          "strongestEvidenceId": null,
+          "supportedMeaning": "لم تُقدَّم أدلة يمكن تحديد معنى مدعوم منها.",
+          "unsupportedPart": null,
+          "missingContext": "يلزم دليل من مصدر معتمد قبل تقييم العلاقة بهذا الادعاء.",
+          "reasoning": "غياب الأدلة المقدمة يمنع تقييم أمانة النقل أو الاستدلال؛ لا يمثل ذلك حكمًا على صحة الادعاء.",
+          "requiresSpecialist": false
+        }
+      }
+    },
+    "noEvidencePatch": {
+      "status": 200,
+      "body": {
+        "patch": {
+          "action": "NO_SAFE_PATCH",
+          "originalText": "A spacecraft discovered a cheese planet yesterday.",
+          "proposedText": null,
+          "changes": [],
+          "preservedIntent": "لم يُغيّر النص الأصلي؛ لا نفرض تصحيحًا غير مستند إلى الأدلة.",
+          "evidenceIds": [],
+          "explanation": "لا تتوفر أدلة كافية ضمن المصادر المتاحة لاقتراح تصحيح آمن."
+        }
+      }
+    }
+  },
+  "completed": true,
+  "completedAt": "2026-10-05T18:03:54.705Z",
+  "sourceUnchanged": true,
+  "repeatSucceeded": false,
+  "finalCheckedAt": "2026-10-05T18:43:40.019Z"
+}

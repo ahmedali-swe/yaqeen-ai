@@ -1,9 +1,11 @@
 export const MAX_TEXT_LENGTH = 10_000;
+export const MIN_TEXT_LENGTH = 10;
 export const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 export const IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"] as const;
 
 export function validateText(text: string): string | null {
   if (!text.trim()) return "أضف النص الذي تريد تحليله أولًا.";
+  if (text.trim().length < MIN_TEXT_LENGTH) return "أضف نصًا أوضح من ١٠ أحرف على الأقل لاستخراج الادعاءات.";
   if (text.length > MAX_TEXT_LENGTH) return "يجب ألا يتجاوز النص ١٠٬٠٠٠ حرف.";
   return null;
 }

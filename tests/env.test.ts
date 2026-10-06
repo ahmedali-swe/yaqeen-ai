@@ -3,7 +3,7 @@ import { parseEnv, requireDatabaseEnv } from "../src/lib/env";
 
 describe("server environment", () => {
   it("allows static UI without database configuration", () => {
-    expect(parseEnv({})).toEqual({ APP_URL: "http://localhost:3000", DB_POOL_MAX: 5 });
+    expect(parseEnv({})).toEqual({ APP_URL: "http://localhost:3000", DB_POOL_MAX: 5, DORAR_ENABLED: "true" });
   });
   it("requires a database URL for database operations", () => {
     expect(() => requireDatabaseEnv({})).toThrow("DATABASE_URL is required");
@@ -23,5 +23,11 @@ describe("server environment", () => {
   });
   it("rejects non-web app URLs", () => {
     expect(() => parseEnv({ APP_URL: "ftp://example.com" })).toThrow("APP_URL");
+  });
+  it("allows disabling optional Dorar requests explicitly", () => {
+    expect(parseEnv({ DORAR_ENABLED: "false" }).DORAR_ENABLED).toBe("false");
+  });
+  it.each(["yes", "0", false])("rejects ambiguous Dorar flags", (DORAR_ENABLED) => {
+    expect(() => parseEnv({ DORAR_ENABLED })).toThrow("DORAR_ENABLED");
   });
 });

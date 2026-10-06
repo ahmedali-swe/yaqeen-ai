@@ -1,0 +1,104 @@
+{
+  "recordedAt": "2026-10-05T22:47:05.715Z",
+  "method": "Actual API handlers, real Groq reasoning and bundled source retrieval; user-supplied extracted claims with exact source offsets; no AI mocks or Patch calls.",
+  "originalContent": "قال الكاتب: «من يرد الله به خيرًا يفقهه في الدين»، ثم استنتج أن كل من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع فهذا دليل على أن الله لا يريد به خيرًا.",
+  "claims": [
+    {
+      "id": "bukhari-quote",
+      "text": "«من يرد الله به خيرًا يفقهه في الدين»",
+      "normalizedText": "«من يرد الله به خيرًا يفقهه في الدين»",
+      "claimType": "QUOTE",
+      "subject": null,
+      "attributedTo": null,
+      "sourceMentioned": null,
+      "isVerifiable": true,
+      "verificationReason": "This statement can be checked against a relevant record.",
+      "originalStart": 12,
+      "originalEnd": 49
+    },
+    {
+      "id": "bukhari-conclusion",
+      "text": "كل من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع فهذا دليل على أن الله لا يريد به خيرًا",
+      "normalizedText": "كل من لم يتخصص في الفقه أو لم يكن لديه علم شرعي واسع فهذا دليل على أن الله لا يريد به خيرًا",
+      "claimType": "INTERPRETATION",
+      "subject": null,
+      "attributedTo": null,
+      "sourceMentioned": null,
+      "isVerifiable": true,
+      "verificationReason": "This statement can be checked against a relevant record.",
+      "originalStart": 64,
+      "originalEnd": 155
+    }
+  ],
+  "observations": [
+    {
+      "claimId": "bukhari-quote",
+      "evidenceHttpStatus": 200,
+      "reasoningHttpStatus": 502,
+      "resolution": {
+        "evidenceOrigin": "DIRECT",
+        "evidenceAnchorClaimId": null
+      },
+      "evidence": [
+        {
+          "id": "sahihayn-bukhari-71",
+          "reference": "صحيح البخاري، حديث 71"
+        },
+        {
+          "id": "sahihayn-bukhari-3116",
+          "reference": "صحيح البخاري، حديث 3116"
+        },
+        {
+          "id": "sahihayn-bukhari-7312",
+          "reference": "صحيح البخاري، حديث 7312"
+        },
+        {
+          "id": "sahihayn-muslim-1037a",
+          "reference": "صحيح مسلم، حديث 1037a"
+        },
+        {
+          "id": "sahihayn-muslim-1037b",
+          "reference": "صحيح مسلم، حديث 1037b"
+        }
+      ],
+      "error": {
+        "code": "AI_UNAVAILABLE"
+      }
+    },
+    {
+      "claimId": "bukhari-conclusion",
+      "evidenceHttpStatus": 200,
+      "resolution": {
+        "evidenceOrigin": "CONTEXTUAL_ANCHOR",
+        "evidenceAnchorClaimId": "bukhari-quote"
+      },
+      "evidence": [
+        {
+          "id": "sahihayn-bukhari-71",
+          "reference": "صحيح البخاري، حديث 71"
+        },
+        {
+          "id": "sahihayn-bukhari-3116",
+          "reference": "صحيح البخاري، حديث 3116"
+        },
+        {
+          "id": "sahihayn-bukhari-7312",
+          "reference": "صحيح البخاري، حديث 7312"
+        },
+        {
+          "id": "sahihayn-muslim-1037a",
+          "reference": "صحيح مسلم، حديث 1037a"
+        },
+        {
+          "id": "sahihayn-muslim-1037b",
+          "reference": "صحيح مسلم، حديث 1037b"
+        }
+      ],
+      "reasoning": "NOT_ATTEMPTED_AFTER_PROVIDER_FAILURE"
+    }
+  ],
+  "providerStatuses": [
+    429
+  ],
+  "transportCodes": []
+}

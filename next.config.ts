@@ -2,6 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  outputFileTracingIncludes: {
+    "/api/analyze/evidence": ["./data/hadith/bukhari.json", "./data/hadith/muslim.json"],
+    "/api/analyze/patch": ["./data/hadith/bukhari.json", "./data/hadith/muslim.json"],
+    "/api/health": ["./data/hadith/bukhari.json", "./data/hadith/muslim.json"],
+  },
   async headers() {
     return [{ source: "/:path*", headers: [
       { key: "X-Content-Type-Options", value: "nosniff" },
