@@ -8,6 +8,62 @@ import { arabicExample, quotationClaim, interpretationClaim, hadithEvidence } fr
 import { bukhari71Content, bukhari71Quote, bukhari71Conclusion } from "./fixtures/bukhari-71";
 
 const context = { claims: [quotationClaim, interpretationClaim], originalContent: arabicExample };
+describe("anaphoric Arabic evidence references", () => {
+  function references(content: string, quoteText: string, interpretationText: string) {
+    const source = claim(quoteText, { id: "anaphoric-source", claimType: "QUOTE", sourceMentioned: "حديث", originalStart: content.indexOf(quoteText), originalEnd: content.indexOf(quoteText) + quoteText.length });
+    const selected = claim(interpretationText, { id: "anaphoric-interpretation", claimType: "INTERPRETATION", originalStart: content.indexOf(interpretationText), originalEnd: content.indexOf(interpretationText) + interpretationText.length });
+    return { source, selected, claims: [source, selected], originalContent: content };
+  }
+  it.each([
+    ["«من غشنا فليس منا» معناها أنه كافر", "«من غشنا فليس منا»", "معناها أنه كافر"],
+    ["«من غشنا فليس منا»، والمقصود منه أن الغش يخرج صاحبه من الإسلام.", "«من غشنا فليس منا»", "والمقصود منه أن الغش يخرج صاحبه من الإسلام"],
+    ["قال: «الدين النصيحة». أي معناه وجوب النصيحة في كل حالة.", "«الدين النصيحة»", "أي معناه وجوب النصيحة في كل حالة"],
+  ])("supplies context without a verdict for %s", async (content, quoteText, interpretationText) => {
+    const input = references(content, quoteText, interpretationText);
+    const retrieve = vi.fn().mockResolvedValueOnce({ evidence: [] }).mockResolvedValueOnce({ evidence: [hadithEvidence] });
+    const result = await resolveClaimEvidence(input.selected, { claims: input.claims, originalContent: input.originalContent }, undefined, retrieve);
+    expect(result.resolution).toEqual({ evidenceOrigin: "CONTEXTUAL_ANCHOR", evidenceAnchorClaimId: input.source.id });
+    expect(result.evidence[0]).toBe(hadithEvidence);
+    expect(retrieve.mock.calls.map(([selected]) => selected.id)).toEqual([input.selected.id, input.source.id]);
+    expect(result).not.toHaveProperty("analysis"); expect(result).not.toHaveProperty("verificationStatus");
+  });
+  it.each(["معناها", "معناه", "معنى ذلك", "دلالتها", "دلالته", "المقصود منها", "المقصود منه", "المراد منها", "المراد منه", "يفهم منها", "يفهم منه", "يدل هذا على", "تدل على", "وهذا معناه", "وهذا المقصود", "أي معناها", "أي معناه", "أي أنه", "هذا يدل على", "يفهم منه أن", "مَعْنَاهَا", "معناه انه"])("recognizes %s inside or before the extracted interpretation", (phrase) => {
+    const quoteText = "«إنما الأعمال بالنيات»";
+    const interpretation = `${phrase}${/(?:أن|انه)$/u.test(phrase) ? "" : " أنه"} يلزم تجديد النية`;
+    for (const text of [interpretation, "يلزم تجديد النية"]) {
+      const input = references(`${quoteText}، ${interpretation}`, quoteText, text);
+      expect(resolveEvidenceAnchor(input.selected, [...input.claims].reverse(), input.originalContent)).toEqual({ evidenceAnchorClaimId: input.source.id, sourceType: "HADITH" });
+    }
+  });
+  it("normalizes only the discourse and preserves source offsets, pronouns and quote punctuation", () => {
+    const input = references('“الدين النصيحة”؛ «مَعْنَاهَا   أَنَّهُ يلزم النصح»', "الدين النصيحة", "مَعْنَاهَا   أَنَّهُ يلزم النصح");
+    expect(resolveEvidenceAnchor(input.selected, input.claims, input.originalContent)?.evidenceAnchorClaimId).toBe(input.source.id);
+  });
+  it("does not inherit for an independent market statement, even when classified as interpretation", () => {
+    const input = references("«من غشنا فليس منا». ثم ذكر الكاتب سعر سلعة في السوق.", "«من غشنا فليس منا»", "ثم ذكر الكاتب سعر سلعة في السوق");
+    expect(resolveEvidenceAnchor(input.selected, input.claims, input.originalContent)).toBeNull();
+  });
+  it("abstains for two plausible sources even with exact offsets", () => {
+    const input = references("«الدين النصيحة» و«من غشنا فليس منا». معناها أنه كافر.", "«من غشنا فليس منا»", "معناها أنه كافر");
+    const other = claim("«الدين النصيحة»", { id: "competing-source", claimType: "QUOTE", originalStart: 0, originalEnd: "«الدين النصيحة»".length });
+    expect(resolveEvidenceAnchor(input.selected, [other, ...input.claims], input.originalContent)).toBeNull();
+  });
+  it("requires an interpretive type, proximity and an immediate dependency", () => {
+    for (const text of ["معناها أنه كافر", "أسعارها ارتفعت أمس", "لا تدل على حكم جديد"]) {
+      const input = references(`«الدين النصيحة» ${text}`, "«الدين النصيحة»", text);
+      if (text === "معناها أنه كافر") {
+        const factual = { ...input.selected, claimType: "HISTORICAL_CLAIM" as const };
+        expect(resolveEvidenceAnchor(factual, [input.source, factual], input.originalContent)).toBeNull();
+      } else {
+        expect(resolveEvidenceAnchor(input.selected, input.claims, input.originalContent)).toBeNull();
+      }
+    }
+    for (const gap of [" ".repeat(101), "\n", " ثم ذكر الكاتب سعر سلعة في السوق. "]) {
+      const input = references(`«الدين النصيحة»${gap}معناه أنه يلزم النصح`, "«الدين النصيحة»", "معناه أنه يلزم النصح");
+      expect(resolveEvidenceAnchor(input.selected, input.claims, input.originalContent)).toBeNull();
+    }
+  });
+});
 describe("conservative textual evidence anchors", () => {
   const source = claim("من يرد الله به خيرًا يفقهه في الدين", { id: "source", claimType: "QUOTE", sourceMentioned: "صحيح البخاري" });
   function discourseContext(text: string, connector = "", claimType: "INTERPRETATION" | "GENERAL_CLAIM" = "INTERPRETATION") {

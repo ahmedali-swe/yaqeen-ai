@@ -52,15 +52,19 @@ export function resolveEvidenceAnchor(claim: ExtractedClaim, claims: ExtractedCl
   const discourse = claim.claimType === "INTERPRETATION" || claim.claimType === "RULING" || explicitSource
     ? /(?:^|[\s،,:؛.!؟»”"])(?:و?هذا\s+يعني(?:\s+ان)?|و?يعني(?:\s+ان)?|و?معنى\s+هذا(?:\s+ان)?|اي\s+ان|و?اذن|و?بالتالي|و?بناء\s+على\s+(?:هذا(?:\s+(?:الحديث|النص|الكلام))?|ذلك|الحديث)|و?من\s+هنا|و?لذلك|و?هذا\s+يدل\s+على(?:\s+ان)?|و?نستنتج\s+من\s+ذلك(?:\s+ان)?|و?يفهم\s+من\s+هذا(?:\s+ان)?|و?المقصود\s+ان|و?حسب\s+هذا\s+الكلام|و?هذا\s+معناه(?:\s+ان)?|و?معناته|و?عشان\s+كذا|ثم\s+(?:استنتج|ذكر)\s+ان|ومن\s+هذا\s+نفهم(?:\s+ان)?|فدل\s+ذلك\s+على(?:\s+ان)?)(?=$|[\s،,:؛.!؟])/u.exec(bridge) : null;
   const sourceDependency = /(?:هذا الحديث|هذه الاية|هذا النص)\s+(?:يعني|يدل|تدل|يثبت|تثبت)|(?:يدل|تدل)\s+(?:هذا الحديث|هذه الاية)|(?:ومن ذلك نفهم|وهذا يدل على)/u.exec(bridge);
-  const reference = sourceDependency && (!discourse || sourceDependency.index < discourse.index) ? sourceDependency : discourse ?? sourceDependency;
+  // Attached pronouns are dependency markers only for interpretive claims.
+  // Match their morphology locally; never conflate ة and ه throughout the text.
+  const anaphora = claim.claimType === "INTERPRETATION" || claim.claimType === "RULING"
+    ? /(?:^|[\s،,:؛.!؟«»“”"'])(?:و?(?:اي\s+)?(?:معناه(?:ا)?|معنى\s+ذلك|دلالت(?:ها|ه)|(?:المقصود|المراد)\s+من(?:ها|ه)|يفهم\s+من(?:ها|ه)|يدل\s+هذا\s+على|تدل\s+على|هذا\s+(?:معناه|المقصود|يدل\s+على))|و?اي\s+ان(?:ها|ه)?)(?:\s+ان(?:ها|ه)?)?(?=$|[\s،,:؛.!؟«»“”"'])/u.exec(bridge) : null;
+  const reference = [sourceDependency, discourse, anaphora].filter((match): match is RegExpExecArray => match !== null).sort((a, b) => a.index - b.index || b[0].length - a[0].length)[0];
   if (!reference || reference.index > normalizedGap.length + 3) return null;
   const before = bridge.slice(0, reference.index).replace(/[«»“”"،,:؛.!؟\s]/gu, " ").trim();
   if (before && !/^(?:(?:ثم|و|ذكر|قال|كتب|اضاف|ان|الكاتب|الكاتبة|المؤلف|المؤلفة|وذكر|وقال|واضاف)\s*)+$/u.test(before)) return null;
   // Nothing substantive may intervene between the connector and the selected
   // proposition. A connector elsewhere in the paragraph is not an anchor.
-  if (reference === discourse) {
+  if (reference === discourse || reference === anaphora) {
     const after = bridge.slice(reference.index + reference[0].length, normalizedGap.length).replace(/[«»“”"،,:؛.!؟\s]/gu, " ").trim();
-    if (after && !/^(?:ان\s+)?(?:(?:هذا الحديث|هذه الاية|هذا النص)\s+(?:يعني|يدل|تدل|يثبت|تثبت)(?:\s+على)?(?:\s+ان)?)?$/u.test(after)) return null;
+    if (after && !/^(?:ان(?:ها|ه)?\s+)?(?:(?:هذا الحديث|هذه الاية|هذا النص)\s+(?:يعني|يدل|تدل|يثبت|تثبت)(?:\s+على)?(?:\s+ان)?)?$/u.test(after)) return null;
   }
   const sourceReference = explicitSource?.[0] ?? reference[0];
   const sourceHint = previous.item.sourceMentioned ?? "";
