@@ -59,6 +59,7 @@ it("keeps evidence through a reasoning failure and retries only that stage", asy
   await user.click(screen.getByRole("button", { name: "البحث عن الأدلة" }));
   await user.click(await screen.findByRole("button", { name: "تحليل العلاقة" }));
   const alert = await screen.findByRole("alert");
+  expect(screen.queryByText("الأدلة غير كافية")).not.toBeInTheDocument();
   expect(alert).toHaveTextContent("لم يصدر يقين نتيجة غير موثقة."); expect(alert.textContent).not.toMatch(/429|Groq|secret|AI_UNAVAILABLE/);
   expect(screen.getByRole("button", { name: "الأدلة" })).toBeEnabled();
   expect(screen.queryByRole("heading", { name: "مدعوم" })).not.toBeInTheDocument();
@@ -107,7 +108,9 @@ it("does not claim meaning drift when no evidence was found", async () => {
   const steps = screen.getByRole("navigation", { name: "مراحل التحليل" });
   expect(steps.querySelectorAll(".is-complete")).toHaveLength(3);
   expect(within(steps).getByRole("button", { name: "العلاقة" }).closest("li")).toHaveAttribute("aria-current", "step");
-  expect(within(steps).getByText(/تعذر الاستكمال/)).toBeInTheDocument();
+  expect(within(steps).getByText(/الأدلة غير كافية/)).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: "الأدلة غير كافية" })).toBeInTheDocument();
+  expect(screen.queryByText(/تعذر الاستكمال/)).not.toBeInTheDocument();
   expect(within(steps).queryByText(/تصحيح يقين|تحوّل المعنى/)).not.toBeInTheDocument();
   expect(screen.getByText("لا يمكن تقييم تحوّل المعنى أو اقتراح تصحيح موثوق لعدم توفر دليل كافٍ.")).toBeInTheDocument();
   expect(screen.queryByRole("button", { name: "اقتراح تصحيح يقين" })).not.toBeInTheDocument();
@@ -117,7 +120,7 @@ it("stops when retrieved evidence cannot establish a relation instead of activat
   render(<WorkflowStepper extracted state={{ evidenceResult: { evidence: [hadithEvidence] }, analysis: relation({ verificationStatus: "NEEDS_CONTEXT", relationType: "NONE", strongestEvidenceId: null }) }} />);
   const steps = screen.getByRole("navigation", { name: "مراحل التحليل" });
   expect(steps.querySelectorAll(".is-complete")).toHaveLength(3);
-  expect(steps.querySelector("[aria-current]")).toBeNull(); expect(steps).toHaveTextContent("تعذر الاستكمال");
+  expect(steps.querySelector("[aria-current]")).toBeNull(); expect(steps).toHaveTextContent("الأدلة غير كافية");
   expect(steps).not.toHaveTextContent("تصحيح يقين");
 });
 

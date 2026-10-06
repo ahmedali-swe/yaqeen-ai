@@ -5,7 +5,7 @@ const labels = ["الادعاءات", "الأدلة", "العلاقة", "تحو�
 export function WorkflowStepper({ extracted, state, hasClaims = true, activeStage, onNavigate }: { extracted: boolean; state: ClaimFlowState; hasClaims?: boolean; activeStage?: AnalysisStage; onNavigate?: (stage: AnalysisStage) => void }) {
   const meaningAvailable = !!state.analysis && !!state.evidenceResult?.evidence.length && state.analysis.relationType !== "NONE";
   const terminal = hasInsufficientEvidence(state);
-  const steps = terminal ? [...labels.slice(0, 3), "تعذر الاستكمال"] : labels;
+  const steps = terminal ? [...labels.slice(0, 3), "الأدلة غير كافية"] : labels;
   const complete = [extracted, !!state.evidenceResult, !!state.analysis, meaningAvailable, !!state.patch];
   if (terminal) complete[3] = false;
   const available = stageAvailability(state, extracted, hasClaims);

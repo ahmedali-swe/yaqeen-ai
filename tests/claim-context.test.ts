@@ -9,6 +9,46 @@ import { bukhari71Content, bukhari71Quote, bukhari71Conclusion } from "./fixture
 
 const context = { claims: [quotationClaim, interpretationClaim], originalContent: arabicExample };
 describe("conservative textual evidence anchors", () => {
+  const source = claim("من يرد الله به خيرًا يفقهه في الدين", { id: "source", claimType: "QUOTE", sourceMentioned: "صحيح البخاري" });
+  function discourseContext(text: string, connector = "", claimType: "INTERPRETATION" | "GENERAL_CLAIM" = "INTERPRETATION") {
+    const content = `«${source.text}»، ${connector}${text}`;
+    const selected = claim(text, { id: "inference", claimType, originalStart: content.indexOf(text), originalEnd: content.indexOf(text) + text.length });
+    return { selected, content, claims: [source, selected] };
+  }
+  it.each([
+    "يعني إذا الواحد ما يحب يقرأ في الدين كثير، فهذا دليل إن الله ما يبي فيه خير.",
+    "وهذا يعني أن كل من لم يتخصص في الفقه لا يريد الله به خيرًا.",
+  ])("inherits contextual evidence for natural Arabic: %s", async (text) => {
+    const { selected, content, claims } = discourseContext(text);
+    const retrieve = vi.fn().mockResolvedValueOnce({ evidence: [] }).mockResolvedValueOnce({ evidence: [hadithEvidence] });
+    const result = await resolveClaimEvidence(selected, { claims, originalContent: content }, undefined, retrieve);
+    expect(result.resolution).toEqual({ evidenceOrigin: "CONTEXTUAL_ANCHOR", evidenceAnchorClaimId: source.id });
+    expect(result.evidence).toEqual([hadithEvidence]);
+    expect(result).not.toHaveProperty("analysis");
+  });
+  it.each(["يعني", "وهذا يعني", "معنى هذا", "أي أن", "إذن", "وبالتالي", "وبناءً على هذا", "وبناءً على الحديث", "ومن هنا", "لذلك", "وهذا يدل على", "نستنتج من ذلك", "يفهم من هذا", "المقصود أن", "حسب هذا الكلام", "معناته", "عشان كذا", "يَعْنِي"])("accepts %s inside or omitted from the extracted interpretation", (connector) => {
+    for (const omitted of [true, false]) {
+      const { selected, claims, content } = omitted ? discourseContext("كل من لم يتخصص في الفقه لا يريد الله به خيرًا", `${connector} `) : discourseContext(`${connector} كل من لم يتخصص في الفقه لا يريد الله به خيرًا`);
+      expect(resolveEvidenceAnchor(selected, claims, content)?.evidenceAnchorClaimId).toBe(source.id);
+    }
+  });
+  it("abstains for an unrelated economic topic, even if mislabeled interpretation", () => {
+    const selected = claim("ثم تحدث الكاتب عن موضوع اقتصادي غير متعلق.", { id: "economic", claimType: "INTERPRETATION" });
+    expect(resolveEvidenceAnchor(selected, [source, selected], `«${source.text}». ${selected.text}`)).toBeNull();
+  });
+  it("abstains for competing nearby quotes rather than selecting the nearest", () => {
+    const other = claim("إنما الأعمال بالنيات", { id: "other-source", claimType: "QUOTE", sourceMentioned: "صحيح مسلم" });
+    const selected = claim("وهذا يعني أن كل عمل مقبول", { id: "ambiguous", claimType: "INTERPRETATION" });
+    expect(resolveEvidenceAnchor(selected, [source, other, selected], `«${source.text}»، و«${other.text}»، ${selected.text}`)).toBeNull();
+  });
+  it("requires interpretive metadata for a generic cue and rejects embedded word matches or distant quotes", () => {
+    for (const text of ["يعني ارتفعت الأسعار أمس", "لا يعني ارتفاع الأسعار تغير الحكم"]) {
+      const { selected, claims, content } = discourseContext(text, "", "GENERAL_CLAIM");
+      expect(resolveEvidenceAnchor(selected, claims, content)).toBeNull();
+    }
+    const { selected, claims, content } = discourseContext("يعني كل عمل مقبول", " ".repeat(101));
+    expect(resolveEvidenceAnchor(selected, claims, content)).toBeNull();
+  });
   it.each(["ثم استنتج أن", "ثم ذكر أن", "وبناءً على ذلك", "لذلك", "ولذلك", "ومن هذا نفهم", "وهذا يدل على", "فدل ذلك على"])("anchors the source discourse connector %s omitted from extracted text", (connector) => {
     const content = bukhari71Content.replace("ثم استنتج أن", connector);
     const selected = { ...bukhari71Conclusion, originalStart: content.indexOf(bukhari71Conclusion.text), originalEnd: content.indexOf(bukhari71Conclusion.text) + bukhari71Conclusion.text.length };
