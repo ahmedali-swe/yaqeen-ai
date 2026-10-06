@@ -4,6 +4,7 @@ import { retrieveEvidence } from "@/evidence/retriever";
 import { resolveClaimEvidence } from "@/evidence/resolve";
 import { EvidenceRetrievalError } from "@/evidence/types";
 import { readBoundedBody } from "@/lib/read-bounded-body";
+import { isValidRequestOrigin } from "@/lib/request-origin";
 import { withApprovedExplanations } from "@/evidence/explanations/hadeethenc";
 
 export const runtime = "nodejs";
@@ -14,8 +15,7 @@ const budget = globalThis as typeof globalThis & { evidenceBudget?: { starts: nu
 const failure = (code: string, status: number) => Response.json({ error: { code } }, { status, headers: { "Cache-Control": "no-store", ...(status === 429 ? { "Retry-After": "60" } : {}) } });
 
 export async function POST(request: Request) {
-  const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin) return failure("INVALID_ORIGIN", 403);
+  if (!isValidRequestOrigin(request)) return failure("INVALID_ORIGIN", 403);
   if (request.headers.get("content-type")?.split(";")[0].trim().toLowerCase() !== "application/json") return failure("INVALID_CONTENT_TYPE", 415);
   if (Number(request.headers.get("content-length")) > MAX_BODY_BYTES) return failure("INPUT_TOO_LARGE", 413);
   let parsed: z.infer<typeof requestSchema>;

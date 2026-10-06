@@ -17,6 +17,16 @@ describe("POST /api/analyze/claims", () => {
     expect(response.status).toBe(200); expect(await response.json()).toEqual(result);
     expect(response.headers.get("cache-control")).toBe("no-store"); expect(release).toHaveBeenCalledOnce();
   });
+  it("returns claims for a legitimate Render same-origin request", async () => {
+    vi.stubEnv("RENDER", "true");
+    try {
+      const text = "A sufficiently long statement."; const result = { claims: [claim(text)] };
+      extract.mockResolvedValue(result);
+      const response = await POST(request({ text }, { Origin: "https://yaqeen-ai.onrender.com", "x-forwarded-host": "yaqeen-ai.onrender.com", "x-forwarded-proto": "https" }));
+      expect(response.status).toBe(200); expect(await response.json()).toEqual(result);
+      expect(extract).toHaveBeenCalledOnce(); expect(release).toHaveBeenCalledOnce();
+    } finally { vi.unstubAllEnvs(); }
+  });
   it.each([{ text: "" }, { text: "   " }, { text: "short" }, { text: 7 }, {}, { text: "x".repeat(10_001) }, { text: "A sufficiently long statement.", key: "unexpected" }])("rejects invalid input %j without AI", async (body) => {
     expect((await POST(request(body))).status).toBe(400); expect(extract).not.toHaveBeenCalled();
   });

@@ -3,6 +3,7 @@ import { extractClaims } from "@/ai/claim-extraction";
 import { ExtractionError } from "@/ai/errors";
 import { reserveExtraction } from "@/ai/request-limit";
 import { MAX_TEXT_LENGTH, validateText } from "@/lib/input";
+import { isValidRequestOrigin } from "@/lib/request-origin";
 
 export const runtime = "nodejs";
 export const maxDuration = 40;
@@ -29,8 +30,7 @@ async function readBody(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin) return failure("INVALID_ORIGIN", 403);
+  if (!isValidRequestOrigin(request)) return failure("INVALID_ORIGIN", 403);
   if (request.headers.get("content-type")?.split(";")[0].trim().toLowerCase() !== "application/json") return failure("INVALID_CONTENT_TYPE", 415);
   if (Number(request.headers.get("content-length")) > MAX_BODY_BYTES) return failure("INPUT_TOO_LARGE", 413);
   let text: string;
